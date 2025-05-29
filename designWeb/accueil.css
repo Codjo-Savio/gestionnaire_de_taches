@@ -64,8 +64,11 @@ body{
     z-index: 1;
 }
 
+menu h1{
+    margin-bottom: 0.5rem;
+}
 a{
-    margin: 1rem;
+    margin: 0.75rem;
     padding-left: 1rem;
     text-align: left;
     text-decoration: none;
@@ -73,9 +76,75 @@ a{
     cursor: grab;
 }
 
+a:hover{
+    background: rgba(255,255,255,0.1);
+    border-color: #5271ff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
 .accueil{
     color: #ff7676;
 }
+
+.accueil::before{
+    content:"🏠";
+    margin-right: 0.5rem;
+}
+
+.inbox::before{
+    content:"✉️";
+    margin-right: 0.5rem;
+}
+
+.prive::before{
+    content:"🔒";
+    margin-right: 0.5rem;
+}
+
+.guide::before{
+    content:"📖";
+    margin-right: 0.5rem;
+}
+
+.nouveau::before{
+    content:"📋";
+    margin-right: 0.5rem;
+}
+
+.todo::before{
+    content:"📝";
+    margin-right: 0.5rem;
+}
+
+.anciens::before{
+    content:"📋";
+    margin-right: 0.5rem;
+}
+
+.parametres::before{
+    content:"⚙️";
+    margin-right: 0.5rem;
+}
+
+.corbeille::before{
+    content:"🗑";
+    margin-right: 0.5rem;
+}
+
+.inviter::before{
+    content:"👤";
+    margin-right: 0.5rem;
+}
+
+.meeting::before{
+    content:"💼";
+    margin-right: 0.5rem;
+}
+
 
 #section_accueil{
     flex : 2;
