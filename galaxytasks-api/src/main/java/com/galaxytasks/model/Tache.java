@@ -18,8 +18,24 @@ public class Tache {
     @Column(nullable = true)
     private LocalDate date_echeance;
 
+    /* Type ENUM */
+    public enum Priorite{
+        UN(1), DEUX(2), TROIS(3), QUATRE(4), CINQ(5);
+
+        private final int value;
+
+        Priorite(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private char[] priorite = {'1','2', '3', '4', '5'};
+    private Priorite priorite;
 
     @Column (nullable = false)
     private boolean est_termine = false;
@@ -37,7 +53,7 @@ public class Tache {
         // constructeur vide pour JPA
     }
 
-    public Tache(Integer idTache, String titre, String description_tache, LocalDate date_echeance, char[] priorite, boolean est_termine, Projet idProjet, Utilisateur proprietaire){
+    public Tache(Integer idTache, String titre, String description_tache, LocalDate date_echeance, Priorite priorite, boolean est_termine, Projet idProjet, Utilisateur proprietaire){
         this.idTache = idTache;
         this.titre = titre;
         this.description_tache = description_tache;

@@ -1,5 +1,5 @@
 package com.galaxytasks.model;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,7 +16,7 @@ public class Projet {
     private String descriptionProjet;
 
     @Column(nullable = false)
-    private LocalDate date_creation;
+    private LocalDateTime date_creation = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "idProprietaire", nullable = false)
@@ -27,7 +27,7 @@ public class Projet {
         // constructeur vide pour JPA
     }
 
-    private Projet(Integer idProjet, String intitule, String descriptionProjet, LocalDate date_creation, Utilisateur idUtilisateur){
+    private Projet(Integer idProjet, String intitule, String descriptionProjet, LocalDateTime date_creation, Utilisateur idUtilisateur){
         this.idProjet = idProjet;
         this.intitule = intitule;
         this.descriptionProjet = descriptionProjet;
@@ -71,11 +71,11 @@ public class Projet {
         return descriptionProjet;
     }
 
-    public void setDateCreation(LocalDate date_creation){
+    public void setDateCreation(LocalDateTime date_creation){
         this.date_creation = date_creation;
     }
 
-    public LocalDate getDateCreation(){
+    public LocalDateTime getDateCreation(){
         return date_creation;
     }
 
