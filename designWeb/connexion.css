@@ -27,18 +27,18 @@ body {
     min-height: 100vh;
     display: flex;
     font-family: 'Caviar-Regular', Arial, sans-serif;
-    background: linear-gradient(135deg, #010314, #180150, #141313);
+    background: linear-gradient(135deg, #05101d, #05101d, #05101d, #0d0910);
     color: white;
     overflow-x: hidden;
 }
 
 /* Section slogan */
 #section_slogan {
-    flex: 1.5;
+    flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: url('images/tasks.png') center/cover;
+    background: linear-gradient(135deg, #010314, #180150, #141313) center/cover;
     background-blend-mode: overlay;
     padding: 2rem;
     border-top-right-radius: 50px;
