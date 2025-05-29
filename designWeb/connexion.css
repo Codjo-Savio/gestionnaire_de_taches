@@ -197,7 +197,9 @@ button:hover {
 }
 
 button:active {
-    transform: translateY(0);
+    /*transform: translateY(0);*/
+    transform: scale(0.98);
+    box-shadow: none;
 }
 
 /* Continuer avec */
