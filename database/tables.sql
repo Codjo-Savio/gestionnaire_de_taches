@@ -33,7 +33,7 @@ CREATE TABLE projet(
     idProjet INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT pour générer un identifiant unique à chaque ligne
     intitule VARCHAR(100) NOT NULL,
     descriptionProjet TEXT,
-    date_creation DATETIME,
+    date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
     idProprietaire INT NOT NULL,
     FOREIGN KEY (idProprietaire) REFERENCES utilisateur(idUtilisateur) 
         ON DELETE CASCADE
@@ -45,7 +45,7 @@ CREATE TABLE participationProjet(
     idProjet INT NOT NULL, 
     idUtilisateur INT NOT NULL,
     role ENUM('proprietaire', 'admin', 'membre') DEFAULT 'membre',
-    date_ajout DATETIME,
+    date_ajout DATETIME DEFAULT CURRENT_TIMESTAMP,
      FOREIGN KEY (idProjet) REFERENCES projet(idProjet)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -60,16 +60,18 @@ CREATE TABLE tache(
     idTache INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT pour générer un identifiant unique à chaque ligne
     titre VARCHAR(100) NOT NULL,
     description_tache TEXT,
+    date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    date_modification DATETIME DEFAULT CURRENT_TIMESTAMP,
     date_echeance DATETIME,
     priorite ENUM('1','2','3','4','5') NOT NULL, -- Liste des valeurs autorisées
-    est_termine BOOLEAN DEFAULT FALSE,
+    est_termine ENUM ('A faire', 'En cours', 'Terminé', 'Suspendu'),
     idProjet INT NOT NULL,
-    idProprietaire INT,
+    idProprietaire INT NOT NULL,
     FOREIGN KEY (idProjet) REFERENCES projet(idProjet)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (idProprietaire) REFERENCES utilisateur(idUtilisateur)
-        ON DELETE SET NULL
+        ON DELETE CASCADE
         ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
@@ -97,10 +99,10 @@ CREATE TABLE historique_tache(
     FOREIGN KEY (idParticipant) REFERENCES utilisateur(idUtilisateur)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    action VARCHAR(50), -- 'créé', 'modifié', 'assigné', etc.
+    action ENUM('créé', 'modifié', 'assigné', 'désassigné', 'terminé', 'réouvert', 'supprimer', 'priorité modifiée', 'échéance modifiée'),
     ancienne_valeur TEXT,
     nouvelle_valeur TEXT,
-    date_action DATETIME
+    date_action DATETIME DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
 -- Pour les commentaires

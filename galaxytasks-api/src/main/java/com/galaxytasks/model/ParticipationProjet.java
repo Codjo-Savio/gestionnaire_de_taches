@@ -1,5 +1,7 @@
 package com.galaxytasks.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +14,7 @@ public class ParticipationProjet {
     // clés étrangères
     @ManyToOne // plusieurs projets peuvent appartenir à un même utilisateur
     @JoinColumn(name = "idProjet", nullable = false)
-    private Utilisateur idProjet;
+    private Projet idProjet;
 
     @ManyToOne // plusieurs projets peuvent appartenir à un même utilisateur
     @JoinColumn(name = "idUtilisateur", nullable = false)
@@ -20,7 +22,9 @@ public class ParticipationProjet {
 
     /* Type ENUM */
     public enum Role{
-        PROPRIETAIRE("proprietaire"), ADMIN("admin"), MEMBRE("membre");
+        PROPRIETAIRE("proprietaire"), 
+        ADMIN("admin"), 
+        MEMBRE("membre");
 
         private final String value;
 
@@ -34,9 +38,26 @@ public class ParticipationProjet {
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "role", nullable = false)
     private Role role = Role.MEMBRE;
 
+    @Column(name = "date_ajout", nullable = true)
+    private LocalDateTime date_ajout ;
+    @PrePersist
+    public void prePersist() {
+        this.date_ajout = LocalDateTime.now();
+    }
+
+
+}
+
+@Embeddable
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+class ParticipationProjetId implements java.io.Serializable {
+    private Long idProjet;
+    private Long idUtilisateur;
 }
 
 /*

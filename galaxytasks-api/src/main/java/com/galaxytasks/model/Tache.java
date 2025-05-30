@@ -14,14 +14,24 @@ public class Tache {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTache;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "titre", nullable = false, length = 100)
     private String titre;
 
-    @Column(nullable = true)
-    private String description_tache;
+    @Column(name = "description_tache", nullable = true, columnDefinition = "TEXT")
+    private String descriptionTache;
+
+    @Column(name = "date_creation", nullable = false)
+    private LocalDateTime dateCreation;// LocalDateTime pour la date et l'heure
+   
+    @Column(name = "date_modification", nullable = true)
+    private LocalDateTime dateModification;// LocalDateTime pour la date et l'heure
+    public void prePersist() {
+        this.dateCreation = LocalDateTime.now();
+        this.dateModification = LocalDateTime.now();
+    }
     
-    @Column(nullable = true)
-    private LocalDateTime date_echeance;// LocalDateTime pour la date et l'heure
+    @Column(name = "date_echeance", nullable = true)
+    private LocalDateTime dateEcheance;// LocalDateTime pour la date et l'heure
 
     /* Type ENUM */
     public enum Priorite{
@@ -39,16 +49,33 @@ public class Tache {
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "priorite", nullable = false)
     private Priorite priorite;
 
-    @Column (nullable = false)
-    private boolean est_termine = false;
+    public enum EstTermine {
+        TODO("A faire"),
+        EN_COURS("En cours"),
+        TERMINE("Terminé"),
+        SUSPENDU("Suspendu");
+
+        private final String libelle;
+
+        EstTermine(String libelle) {
+            this.libelle = libelle;
+        }
+
+        public String getLibelle() {
+            return libelle;
+        }
+    }
+
+    @Column (name = "est_termine", nullable = false)
+    private EstTermine est_termine = EstTermine.TODO;
 
     // clés étrangères
     @ManyToOne // plusieurs tâches peuvent appartenir à un même projet
     @JoinColumn(name = "idProjet", nullable = false)
-    private Projet idProjet;
+    private Projet projet;
 
     @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur
     @JoinColumn(name = "idProprietaire", nullable = false)
@@ -59,17 +86,14 @@ public class Tache {
         return "Tache{"+
         "Id tache = '" + idTache + '\''+
         ", titre='" + titre + '\'' + 
-        ",Description='" + description_tache + '\'' +
-        ",Echéance='" + date_echeance + '\'' +
+        ",Description='" + descriptionTache + '\'' +
+        ",Echéance='" + dateEcheance + '\'' +
         ",Priorité='" + priorite + '\'' +
         ",est_terminé='" + est_termine + '\'' +
-        ",id Projet='" + idProjet + '\'' +
+        ",id Projet='" + projet + '\'' +
         ",id Propriétaire='" + proprietaire + '\''+
         '}';
     }
-    
-    // getters et setters
-
 }
 
 
@@ -78,16 +102,18 @@ public class Tache {
     idTache INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT pour générer un identifiant unique à chaque ligne
     titre VARCHAR(100) NOT NULL,
     description_tache TEXT,
-    date_echeance DATE,
+    date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    date_modification DATETIME DEFAULT CURRENT_TIMESTAMP,
+    date_echeance DATETIME,
     priorite ENUM('1','2','3','4','5') NOT NULL, -- Liste des valeurs autorisées
     est_termine BOOLEAN DEFAULT FALSE,
     idProjet INT NOT NULL,
-    idProprietaire INT,
+    idProprietaire INT NOT NULL,
     FOREIGN KEY (idProjet) REFERENCES projet(idProjet)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (idProprietaire) REFERENCES utilisateur(idUtilisateur)
-        ON DELETE SET NULL
+        ON DELETE CASCADE
         ON UPDATE CASCADE
 )ENGINE=InnoDB;
  */

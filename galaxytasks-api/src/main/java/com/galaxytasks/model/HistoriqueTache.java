@@ -23,14 +23,46 @@ public class HistoriqueTache {
     @JoinColumn(name = "idParticipant", nullable = false)
     private Utilisateur participant;
 
-    @Column(name = "ancienne_valeur", nullable = true)
+    // enum pour les types d'action
+    public enum TypeAction {
+        CREE("créé"),
+        MODIFIE("modifié"),
+        ASSIGNE("assigné"),
+        DESASSIGNE("désassigné"),
+        TERMINE("terminé"),
+        ROUVERT("rouvert"),
+        SUPPRIME("supprimé"),
+        PRIORITE_MODIFIEE("priorité modifiée"),
+        ECHEANCE_MODIFIEE("échéance modifiée");
+
+        private final String libelle;
+
+        TypeAction(String libelle) {
+            this.libelle = libelle;
+        }
+
+        public String getLibelle() {
+            return libelle;
+        }
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "action", nullable = true)
+    private TypeAction action;
+
+    @Column(name = "ancienne_valeur", nullable = true, columnDefinition = "TEXT")
     private String ancienne_valeur;
 
-    @Column(name = "nouvelle_valeur", nullable = true)
+    @Column(name = "nouvelle_valeur", nullable = true, columnDefinition = "TEXT")
     private String nouvelle_valeur;
 
-    @Column(name = "date_creation", nullable = true)
-    private LocalDateTime date_creation;
+    @Column(name = "date_action", nullable = true)
+    private LocalDateTime date_action;
+
+    public void prePersist() {
+        this.date_action = LocalDateTime.now();
+    }
+
 }
  /*
      * CREATE TABLE historique_tache(

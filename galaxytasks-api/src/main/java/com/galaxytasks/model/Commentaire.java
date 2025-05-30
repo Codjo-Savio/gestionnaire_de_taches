@@ -16,7 +16,7 @@ public class Commentaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCommentaire;
 
-    @Column(name = "contenu", nullable = true)
+    @Column(name = "contenu", nullable = true, columnDefinition = "TEXT")
     private String contenu;
 
     @Column(name = "date_commentaire", nullable = false)
@@ -25,7 +25,7 @@ public class Commentaire {
      // clés étrangères
     @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur
     @JoinColumn(name = "idUtilisateur", nullable = false)
-    private Utilisateur idUtilisateur;
+    private Utilisateur utilisateur;
 
     @ManyToOne // plusieurs tâches peuvent appartenir à un même projet
     @JoinColumn(name = "idTache", nullable = false)
