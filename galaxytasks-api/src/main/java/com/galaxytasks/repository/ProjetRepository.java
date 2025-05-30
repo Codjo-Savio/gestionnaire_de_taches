@@ -1,5 +1,9 @@
 package com.galaxytasks.repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class ProjetRepository {
+import com.galaxytasks.model.Projet;
+
+public interface ProjetRepository extends JpaRepository<Projet, Integer> {
+
     
 }

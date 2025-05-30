@@ -56,8 +56,8 @@ public class ParticipationProjet {
 @NoArgsConstructor
 @AllArgsConstructor
 class ParticipationProjetId implements java.io.Serializable {
-    private Long idProjet;
-    private Long idUtilisateur;
+    private Integer idProjet;
+    private Integer idUtilisateur;
 }
 
 /*

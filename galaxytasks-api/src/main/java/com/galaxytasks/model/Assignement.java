@@ -21,6 +21,15 @@ public class Assignement {
     private Utilisateur participant;
 }
 
+@Embeddable
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+class AssignementId implements java.io.Serializable {
+    private Integer idTache;
+    private Integer idParticipant;
+}
+
 /*
  * CREATE TABLE assignement(
     idTache INT NOT NULL,
