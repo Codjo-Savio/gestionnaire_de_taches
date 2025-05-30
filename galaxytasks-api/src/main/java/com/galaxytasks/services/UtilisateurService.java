@@ -22,16 +22,11 @@ public class UtilisateurService {
     private UtilisateurRepository UtilisateurRepository;
 
     // recupérer tous les utilisateurs
-    public UtilisateurDTO creerUtilisateur(UtilisateurDTO utilisateurDto){
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setNomUtilisateur(utilisateurDto.getNomUtilisateur());
-        utilisateur.setEmail(utilisateurDto.getEmail());
-        utilisateur.setMotDePasse(null); // à hasher plus tard
-        Utilisateur saved = UtilisateurRepository.save(utilisateur);
-        return mapToDto(saved);
+    public Utilisateur creerUtilisateur(Utilisateur utilisateur){
+        return UtilisateurRepository.save(utilisateur);
     }
 
-    public List<Utilisateur> allUsers(){
+    /*public List<Utilisateur> allUsers(){
         return UtilisateurRepository.findAll();
-    }
-}*/
+    }*/
+//}
