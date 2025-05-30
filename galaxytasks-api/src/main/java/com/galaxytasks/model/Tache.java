@@ -1,9 +1,14 @@
 package com.galaxytasks.model;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
+@Entity // entité déjà définie dans MySql
 @Table(name = "tache")
+@Data // générer automatiquement des getters et des setters
+@NoArgsConstructor
+@AllArgsConstructor
+// Utilisation de Column pour spécifier les contraintes
 public class Tache {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +21,7 @@ public class Tache {
     private String description_tache;
     
     @Column(nullable = true)
-    private LocalDate date_echeance;
+    private LocalDateTime date_echeance;// LocalDateTime pour la date et l'heure
 
     /* Type ENUM */
     public enum Priorite{
@@ -40,29 +45,31 @@ public class Tache {
     @Column (nullable = false)
     private boolean est_termine = false;
 
-    @ManyToOne
+    // clés étrangères
+    @ManyToOne // plusieurs tâches peuvent appartenir à un même projet
     @JoinColumn(name = "idProjet", nullable = false)
     private Projet idProjet;
 
-    @ManyToOne
+    @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur
     @JoinColumn(name = "idProprietaire", nullable = false)
     private Utilisateur proprietaire;
-
-    // constructeurs
-    public Tache(){
-        // constructeur vide pour JPA
+    // afficher l'entité
+    @Override
+    public String toString(){
+        return "Tache{"+
+        "Id tache = '" + idTache + '\''+
+        ", titre='" + titre + '\'' + 
+        ",Description='" + description_tache + '\'' +
+        ",Echéance='" + date_echeance + '\'' +
+        ",Priorité='" + priorite + '\'' +
+        ",est_terminé='" + est_termine + '\'' +
+        ",id Projet='" + idProjet + '\'' +
+        ",id Propriétaire='" + proprietaire + '\''+
+        '}';
     }
+    
+    // getters et setters
 
-    public Tache(Integer idTache, String titre, String description_tache, LocalDate date_echeance, Priorite priorite, boolean est_termine, Projet idProjet, Utilisateur proprietaire){
-        this.idTache = idTache;
-        this.titre = titre;
-        this.description_tache = description_tache;
-        this.date_echeance = date_echeance;
-        this.priorite = priorite;
-        this.est_termine = est_termine;
-        this.idProjet = idProjet;
-        this.proprietaire = proprietaire;
-    }
 }
 
 

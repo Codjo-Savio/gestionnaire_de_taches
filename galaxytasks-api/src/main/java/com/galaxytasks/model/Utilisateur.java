@@ -2,13 +2,19 @@
 /* Entité Utilisateur */
 package com.galaxytasks.model;
 import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
+@Entity // entité déjà definie dans MySql
 @Table(name = "utilisateur")
+@Data // générer automatiquement des getters et des setters
+@NoArgsConstructor
+@AllArgsConstructor
+
+// Utilisation de Column pour spécifier les contraintes
 public class Utilisateur{
     // entités
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Spécification  de l'auto-incrémentation
     private Integer idUtilisateur;
 
     @Column(nullable = false, length = 100)
@@ -20,17 +26,7 @@ public class Utilisateur{
     @Column(nullable = false, length = 255)
     private String motDePasse;
 
-    // Constructeur
-    public Utilisateur() {
-        // Constructeur vide requis par JPA
-    }
-    public Utilisateur(Integer idUtilisateur, String nomUtilisateur, String email, String motDePasse){
-        this.idUtilisateur = idUtilisateur;
-        this.nomUtilisateur = nomUtilisateur;
-        this.email = email;
-        this.motDePasse = motDePasse;
-    }
-
+    // afficher l'entité
     @Override
     public String toString() {
         return "Utilisateur{" +
@@ -38,39 +34,6 @@ public class Utilisateur{
                 ", nom='" + nomUtilisateur + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    //getters, setters
-    public void setIdUtilisateur(Integer idUtilisateur){
-        this.idUtilisateur = idUtilisateur;
-    }
-
-    public Integer getIdUtilisateur(){
-        return idUtilisateur;
-    }
-
-    public void setNomUtilisateur(String nomUtilisateur){
-        this.nomUtilisateur = nomUtilisateur;
-    }
-
-    public String getNomUtilisateur(){
-        return nomUtilisateur;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public void setMotDePasse(String motDePasse){
-        this.motDePasse = motDePasse;
-    }
-
-    public String getMotDePasse(){
-        return motDePasse;
     }
 }
 

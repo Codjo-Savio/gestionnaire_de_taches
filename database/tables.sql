@@ -2,8 +2,15 @@
 /* Base de données - Gestionnaire de tâches collaboratif - GalaxyTasks*/
 
 /*Création de la base de donnée*/
-CREATE DATABASE GalaxyTasks CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE GalaxyTasks;
+/*CREATE DATABASE GalaxyTasks CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE GalaxyTasks;*/
+DROP TABLE IF EXISTS commentaire;
+DROP TABLE IF EXISTS historique_tache;
+DROP TABLE IF EXISTS assignement;
+DROP TABLE IF EXISTS tache;
+DROP TABLE IF EXISTS participationProjet;
+DROP TABLE IF EXISTS projet;
+DROP TABLE IF EXISTS utilisateur;
 
 /*Création des tables MySql*/
 
@@ -26,7 +33,7 @@ CREATE TABLE projet(
     idProjet INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT pour générer un identifiant unique à chaque ligne
     intitule VARCHAR(100) NOT NULL,
     descriptionProjet TEXT,
-    date_creation DATE NOT NULL DEFAULT CURRENT_DATE,
+    date_creation DATETIME,
     idProprietaire INT NOT NULL,
     FOREIGN KEY (idProprietaire) REFERENCES utilisateur(idUtilisateur) 
         ON DELETE CASCADE
@@ -38,12 +45,12 @@ CREATE TABLE participationProjet(
     idProjet INT NOT NULL, 
     idUtilisateur INT NOT NULL,
     role ENUM('proprietaire', 'admin', 'membre') DEFAULT 'membre',
-    date_ajout DATE DEFAULT CURRENT_DATE,
+    date_ajout DATETIME,
      FOREIGN KEY (idProjet) REFERENCES projet(idProjet)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (idUtilisateur) REFERENCES utilisateur(idUtilisateur)
-        ON DELETE SET NULL
+        ON DELETE CASCADE
         ON UPDATE CASCADE,
     PRIMARY KEY (idProjet, idUtilisateur)
 )ENGINE=InnoDB;
@@ -53,7 +60,7 @@ CREATE TABLE tache(
     idTache INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT pour générer un identifiant unique à chaque ligne
     titre VARCHAR(100) NOT NULL,
     description_tache TEXT,
-    date_echeance DATE,
+    date_echeance DATETIME,
     priorite ENUM('1','2','3','4','5') NOT NULL, -- Liste des valeurs autorisées
     est_termine BOOLEAN DEFAULT FALSE,
     idProjet INT NOT NULL,
@@ -93,14 +100,14 @@ CREATE TABLE historique_tache(
     action VARCHAR(50), -- 'créé', 'modifié', 'assigné', etc.
     ancienne_valeur TEXT,
     nouvelle_valeur TEXT,
-    date_action DATE DEFAULT CURRENT_DATE
+    date_action DATETIME
 )ENGINE=InnoDB;
 
 -- Pour les commentaires
 CREATE TABLE commentaire(
     idCommentaire INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT pour générer un identifiant unique à chaque ligne
     contenu TEXT,
-    date_commentaire DATE NOT NULL DEFAULT CURRENT_DATE,
+    date_commentaire DATETIME NOT NULL,
     idUtilisateur INT NOT NULL,
     idTache INT NOT NULL,
     FOREIGN KEY (idUtilisateur) REFERENCES utilisateur(idUtilisateur)
