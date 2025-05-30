@@ -16,25 +16,20 @@ public class Commentaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCommentaire;
 
-    /*// clés étrangères
+    @Column(name = "contenu", nullable = true)
+    private String contenu;
+
+    @Column(name = "date_commentaire", nullable = false)
+    private LocalDateTime date_commentaire;
+
+     // clés étrangères
+    @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur
+    @JoinColumn(name = "idUtilisateur", nullable = false)
+    private Utilisateur idUtilisateur;
+
     @ManyToOne // plusieurs tâches peuvent appartenir à un même projet
     @JoinColumn(name = "idTache", nullable = false)
     private Tache tache;
-
-    @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur
-    @JoinColumn(name = "idParticipant", nullable = false)
-    private Utilisateur participant;
-
-    @Column(name = "ancienne_valeur", nullable = true)
-    private String ancienne_valeur;
-
-    @Column(name = "nouvelle_valeur", nullable = true)
-    private String nouvelle_valeur;
-
-    @Column(name = "date_creation", nullable = true)
-    private LocalDateTime date_creation;
-    */
-    
 }
 /*
  * CREATE TABLE commentaire(
