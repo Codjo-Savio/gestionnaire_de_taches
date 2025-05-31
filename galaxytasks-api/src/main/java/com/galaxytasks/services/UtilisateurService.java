@@ -12,14 +12,18 @@ import com.galaxytasks.model.Utilisateur;
 import com.galaxytasks.repository.UtilisateurRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Service
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class UtilisateurService {
     @Autowired
     private UtilisateurRepository UtilisateurRepository;
-    private final UtilisateurMapper mapper;
+    private UtilisateurMapper mapper;
 
     // créer un nouvel utilisateur
     public UtilisateurDTO creerUtilisateur(UtilisateurDTO utilisateurDto){
@@ -29,11 +33,8 @@ public class UtilisateurService {
             throw new IllegalArgumentException("Email déjà utilisé");
         }
         // Sinon, un utilisateur est créé et est mappé su le DTO
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setNomUtilisateur(utilisateurDto.getNomUtilisateur());
-        utilisateur.setEmail(utilisateurDto.getEmail());
-        utilisateur.setMotDePasse("temp"); // à faire
-
+        Utilisateur utilisateur = mapper.toEntity(utilisateurDto);
+        utilisateur.setEmail("temp");
         return mapper.toDto(UtilisateurRepository.save(utilisateur));
     }
 
