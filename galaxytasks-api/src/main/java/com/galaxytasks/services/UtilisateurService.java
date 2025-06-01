@@ -14,6 +14,7 @@ import com.galaxytasks.repository.UtilisateurRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Service
@@ -24,9 +25,10 @@ public class UtilisateurService {
     @Autowired
     private UtilisateurRepository UtilisateurRepository;
     private UtilisateurMapper mapper;
+    private PasswordEncoder passwordEncoder;
 
     // créer un nouvel utilisateur
-    public UtilisateurDTO creerUtilisateur(UtilisateurDTO utilisateurDto){
+    public UtilisateurDTO creerUtilisateur(UtilisateurDTO utilisateurDto, String motDePasse){
         // vérifier si le email est unique ou pas
         if(UtilisateurRepository.existsByEmail(utilisateurDto.getEmail())){
             // s'il est déjà utilisé, une exception est levée
@@ -34,7 +36,7 @@ public class UtilisateurService {
         }
         // Sinon, un utilisateur est créé et est mappé su le DTO
         Utilisateur utilisateur = mapper.toEntity(utilisateurDto);
-        utilisateur.setEmail("temp");
+        utilisateur.setMotDePasse(passwordEncoder.encode(motDePasse));
         return mapper.toDto(UtilisateurRepository.save(utilisateur));
     }
 
