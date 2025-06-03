@@ -12,6 +12,7 @@ import lombok.*;
 public class Projet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //spécification de l'auto-incrémentation
+    @Column(name = "idProjet")
     private Integer idProjet;
 
     @Column(name = "intitule", nullable = false, length = 100)

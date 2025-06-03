@@ -14,16 +14,17 @@ import lombok.*;
 public class Utilisateur{
     // entités
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Spécification  de l'auto-incrémentation
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Spécification  de l'auto-incrémentation7
+    @Column(name = "idUtilisateur", nullable = false)
     private Integer idUtilisateur;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "nomUtilisateur", nullable = false, length = 100)
     private String nomUtilisateur;
 
-    @Column(nullable = false, length = 150, unique = true)
+    @Column(name = "email", nullable = false, length = 150, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 255)
+    @Column(name = "motDePasse", nullable = false, length = 255)
     private String motDePasse;
 
     // afficher l'entité

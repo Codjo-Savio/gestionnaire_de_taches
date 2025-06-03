@@ -14,7 +14,7 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
 
     Optional<Utilisateur>findByidUtilisateur(Integer idUtilisateur);
 
-    Optional<Utilisateur>findBynomUtilisateur(Integer nomUtilisateur);
+    Optional<Utilisateur>findBynomUtilisateur(String nomUtilisateur);
 
     boolean existsByEmail(String email);
 }

@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Commentaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCommentaire")
     private Integer idCommentaire;
 
     @Column(name = "contenu", nullable = true, columnDefinition = "TEXT")

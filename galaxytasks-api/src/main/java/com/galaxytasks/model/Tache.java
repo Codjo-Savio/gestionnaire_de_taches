@@ -12,6 +12,7 @@ import lombok.*;
 public class Tache {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idTache")
     private Integer idTache;
 
     @Column(name = "titre", nullable = false, length = 100)

@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 // Pour le hashage des mots de passe
 @Configuration
-public class SecurityConfig{
+public class PasswordEncod{
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

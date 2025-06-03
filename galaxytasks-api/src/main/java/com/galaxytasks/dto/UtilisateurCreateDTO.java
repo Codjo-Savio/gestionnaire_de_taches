@@ -1,15 +1,12 @@
 package com.galaxytasks.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UtilisateurDTO {
+public class UtilisateurCreateDTO {
     private Integer idUtilisateur;
     private String nomUtilisateur;
     private String email;
-    private String motDePasse;
 }

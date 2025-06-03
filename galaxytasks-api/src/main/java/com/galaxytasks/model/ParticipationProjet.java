@@ -11,12 +11,16 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ParticipationProjet {
+    @EmbeddedId
+    private ParticipationProjetId id;
     // clés étrangères
     @ManyToOne // plusieurs projets peuvent appartenir à un même utilisateur
+    @MapsId("idProjet") // lie à la clé composite
     @JoinColumn(name = "idProjet", nullable = false)
     private Projet idProjet;
 
     @ManyToOne // plusieurs projets peuvent appartenir à un même utilisateur
+    @MapsId("idUtilisateur") // lie à la clé composite
     @JoinColumn(name = "idUtilisateur", nullable = false)
     private Utilisateur idUtilisateur;
 
@@ -50,16 +54,6 @@ public class ParticipationProjet {
 
 
 }
-
-@Embeddable
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-class ParticipationProjetId implements java.io.Serializable {
-    private Integer idProjet;
-    private Integer idUtilisateur;
-}
-
 /*
  * -- Pour la collaboration sur les projets
 CREATE TABLE participationProjet(

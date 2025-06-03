@@ -11,24 +11,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // constructeur vide
 @AllArgsConstructor // constructeur
 public class Assignement {
+    @EmbeddedId
+    private AssignementId id;
     // clés étrangères
     @ManyToOne // plusieurs tâches peuvent appartenir à un même projet
+    @MapsId("idTache") // lie à la clé composite
     @JoinColumn(name = "idTache", nullable = false)
     private Tache tache;
 
     @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur
+    @MapsId("idParticipant") // lie à la clé composite
     @JoinColumn(name = "idParticipant", nullable = false)
     private Utilisateur participant;
 }
 
-@Embeddable
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-class AssignementId implements java.io.Serializable {
-    private Integer idTache;
-    private Integer idParticipant;
-}
 
 /*
  * CREATE TABLE assignement(
