@@ -22,9 +22,11 @@ import com.galaxytasks.dto.UtilisateurDTO;
 import com.galaxytasks.dto.UtilisateurCreateDTO;
 import com.galaxytasks.services.UtilisateurService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 @CrossOrigin(origins = "*") // Pour permettre les requêtes depuis le frontend
 public class UtilisateurRestController{
 
@@ -32,8 +34,8 @@ public class UtilisateurRestController{
     private UtilisateurService utilisateurService;
 
     // POST - Créer un nouvel utilisateur
-    // api/user/create
-    @PostMapping("/create")
+    // api/users
+    @PostMapping("")
     public ResponseEntity<UtilisateurCreateDTO> create(@RequestBody UtilisateurDTO utilisateur){
         try{
             UtilisateurCreateDTO created = utilisateurService.creerUtilisateur(utilisateur);
@@ -47,22 +49,16 @@ public class UtilisateurRestController{
     }
 
     //GET - Récupérer tous les utilisateurs
-    // api/user/allUsers
-    @GetMapping("/allUsers")
+    // api/users
+    @GetMapping("")
     public ResponseEntity<List<UtilisateurCreateDTO>> getAllUser(){
         List<UtilisateurCreateDTO> users = utilisateurService.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
-    // Test de GET
-    @GetMapping("/test")
-    public String test() {
-        return "ça marche !";
-    }
-
     // DELETE - Supprimer un utilisateur
-    // /api/user/delete/{idUtilisateur}
-    @DeleteMapping("/delete/{idUtilisateur}")
+    // /api/users/{idUtilisateur}
+    @DeleteMapping("/{idUtilisateur}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer idUtilisateur){
         if(utilisateurService.deleteUser(idUtilisateur)){
            return ResponseEntity.noContent().build();
@@ -73,9 +69,9 @@ public class UtilisateurRestController{
     }
 
     // PUT - Mettre à jour un utilisateur
-    // /api/user/update/{idUtilisateur}
-    @PutMapping("/update/{idUtilisateur}")
-    public ResponseEntity<Optional<UtilisateurCreateDTO>> updateUser(@PathVariable Integer idUtilisateur, @RequestBody UtilisateurDTO utilisateurDTO){
+    // /api/users/{idUtilisateur}
+    @PutMapping("/{idUtilisateur}")
+    public ResponseEntity<Optional<UtilisateurCreateDTO>> updateUser(@Valid @PathVariable Integer idUtilisateur, @Valid @RequestBody UtilisateurDTO utilisateurDTO){
         try{
             Optional<UtilisateurCreateDTO> user = utilisateurService.updateUser(idUtilisateur, utilisateurDTO);
             return ResponseEntity.ok(user);
@@ -85,9 +81,9 @@ public class UtilisateurRestController{
     }
 
     // GET - Rechercher un utilisateur par son identifiant
-    // /api/user/search/byId?id = ...
-    @GetMapping("/search/byId")
-    public ResponseEntity<Optional<UtilisateurCreateDTO>> searchById(@RequestParam Integer id){
+    // /api/users?id = ...
+    @GetMapping("/id")
+    public ResponseEntity<Optional<UtilisateurCreateDTO>> searchById(@Valid @RequestParam Integer id){
         try{
             Optional<UtilisateurCreateDTO> user = utilisateurService.searchById(id);
             return ResponseEntity.ok(user);
@@ -97,9 +93,9 @@ public class UtilisateurRestController{
     }
 
     // GET - Rechercher un utilisateur par son identifiant
-    // /api/user/search/byName?name = ...
-    @GetMapping("/search/byName")
-    public ResponseEntity<Optional<UtilisateurCreateDTO>> searchByName(@RequestParam String name){
+    // /api/users?name = ...
+    @GetMapping("/name")
+    public ResponseEntity<Optional<UtilisateurCreateDTO>> searchByName(@Valid @RequestParam String name){
         try{
             Optional<UtilisateurCreateDTO> user = utilisateurService.searchByName(name);
             return ResponseEntity.ok(user);
@@ -109,9 +105,9 @@ public class UtilisateurRestController{
     }
 
     // GET - Rechercher un utilisateur par son mail
-    // /api/user/search/byEmail?email = ...
-    @GetMapping("/search/byEmail")
-    public ResponseEntity<Optional<UtilisateurCreateDTO>> searchByEmail(@RequestParam String email){
+    // /api/users?email = ...
+    @GetMapping("/email")
+    public ResponseEntity<Optional<UtilisateurCreateDTO>> searchByEmail(@Valid @RequestParam String email){
         try{
             Optional<UtilisateurCreateDTO> user = utilisateurService.searchByEmail(email);
             return ResponseEntity.ok(user);

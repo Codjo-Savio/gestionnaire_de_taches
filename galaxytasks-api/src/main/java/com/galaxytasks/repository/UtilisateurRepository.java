@@ -12,7 +12,7 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
     // Recherche d’un utilisateur par email (utile pour la connexion)
     Optional<Utilisateur> findByEmail(String email);
 
-    Optional<Utilisateur>findByidUtilisateur(Integer idUtilisateur);
+    Optional<Utilisateur> findByidUtilisateur(Integer idUtilisateur);
 
     Optional<Utilisateur>findBynomUtilisateur(String nomUtilisateur);
 

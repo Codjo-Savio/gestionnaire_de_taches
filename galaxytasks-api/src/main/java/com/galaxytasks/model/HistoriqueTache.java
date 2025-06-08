@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table (name = "historique_tache")
+@Table (name = "historiqueTache")
 @Data // générer automatiquement des getters et des setters
 @NoArgsConstructor // constructeur vide
 @AllArgsConstructor // constructeur
@@ -51,17 +51,17 @@ public class HistoriqueTache {
     @Column(name = "action", nullable = true)
     private TypeAction action;
 
-    @Column(name = "ancienne_valeur", nullable = true, columnDefinition = "TEXT")
-    private String ancienne_valeur;
+    @Column(name = "ancienneValeur", nullable = true, columnDefinition = "TEXT")
+    private String ancienneValeur;
 
-    @Column(name = "nouvelle_valeur", nullable = true, columnDefinition = "TEXT")
-    private String nouvelle_valeur;
+    @Column(name = "nouvelleValeur", nullable = true, columnDefinition = "TEXT")
+    private String nouvelleValeur;
 
-    @Column(name = "date_action", nullable = true)
-    private LocalDateTime date_action;
+    @Column(name = "dateAction", nullable = true)
+    private LocalDateTime dateAction;
 
     public void prePersist() {
-        this.date_action = LocalDateTime.now();
+        this.dateAction = LocalDateTime.now();
     }
 
 }

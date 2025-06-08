@@ -12,7 +12,7 @@ import lombok.*;
 public class Projet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //spécification de l'auto-incrémentation
-    @Column(name = "idProjet")
+    @Column(name = "idProjet", nullable = false)
     private Integer idProjet;
 
     @Column(name = "intitule", nullable = false, length = 100)
@@ -21,7 +21,7 @@ public class Projet {
     @Column(name = "descriptionProjet", nullable = true, columnDefinition = "TEXT")
     private String descriptionProjet;
 
-    @Column(name = "date_creation",nullable = false)
+    @Column(name = "dateCreation",nullable = false)
     private LocalDateTime dateCreation; // LocalDateTime pour la date et l'heure
 
     //est directement appelée avant l'insertion - pour initialiser la date par défaut

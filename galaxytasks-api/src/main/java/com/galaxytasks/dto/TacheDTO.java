@@ -2,7 +2,6 @@ package com.galaxytasks.dto;
 
 import java.time.LocalDateTime;
 
-import com.galaxytasks.model.Projet;
 import com.galaxytasks.model.Tache.EstTermine;
 import com.galaxytasks.model.Tache.Priorite;
 
@@ -14,12 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TacheDTO {
+    private Integer idTache;
     private String titre;
     private String descriptionTache;
-    private LocalDateTime dateCreation;
-    private LocalDateTime dateModification;
     private LocalDateTime dateEcheance;
     private Priorite priorite;
-    private EstTermine est_termine;
-    private Projet projet;
+    private EstTermine estTermine;
+    private Integer idProjet;
+    private Integer idProprietaire;
 }

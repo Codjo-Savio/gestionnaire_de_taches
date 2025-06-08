@@ -45,11 +45,11 @@ public class ParticipationProjet {
     @Column(name = "role", nullable = false)
     private Role role = Role.MEMBRE;
 
-    @Column(name = "date_ajout", nullable = true)
-    private LocalDateTime date_ajout ;
+    @Column(name = "dateAjout", nullable = true)
+    private LocalDateTime dateAjout ;
     @PrePersist
     public void prePersist() {
-        this.date_ajout = LocalDateTime.now();
+        this.dateAjout = LocalDateTime.now();
     }
 
 

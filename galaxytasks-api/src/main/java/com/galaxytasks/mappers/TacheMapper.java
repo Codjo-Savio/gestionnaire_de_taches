@@ -9,22 +9,25 @@ import com.galaxytasks.dto.TacheDTO;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TacheMapper{
+    @Mapping(source = "idTache", target = "idTache")
     @Mapping(source = "titre", target = "titre")
     @Mapping(source = "descriptionTache", target = "descriptionTache")
-    @Mapping(source = "dateCreation", target = "dateCreation")
-    @Mapping(source = "dateModification", target = "dateModification")
     @Mapping(source = "dateEcheance", target = "dateEcheance")
     @Mapping(source = "priorite", target = "priorite")
-    @Mapping(source = "projet", target = "projet")   
+    @Mapping(source = "projet.idProjet", target = "idProjet")   
+    @Mapping(source = "proprietaire.idUtilisateur", target = "idProprietaire")   
     TacheDTO toDto(Tache tache);
 
+    @Mapping(source = "idTache", target = "idTache")
     @Mapping(source = "titre", target = "titre")
     @Mapping(source = "descriptionTache", target = "descriptionTache")
-    @Mapping(source = "dateCreation", target = "dateCreation")
-    @Mapping(source = "dateModification", target = "dateModification")
+    @Mapping(target = "dateCreation",ignore = true)
+    @Mapping(target = "dateModification", ignore = true)
     @Mapping(source = "dateEcheance", target = "dateEcheance")
     @Mapping(source = "priorite", target = "priorite")
-    @Mapping(source = "projet", target = "projet")   
+    @Mapping(target = "projet", ignore = true)
+    @Mapping(target = "proprietaire", ignore = true)   
     Tache toEntity(TacheDTO tacheDto);
 }
+
 

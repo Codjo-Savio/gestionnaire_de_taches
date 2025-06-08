@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table (name = "historique_tache")
+@Table (name = "commentaire")
 @Data // générer automatiquement des getters et des setters
 @NoArgsConstructor // constructeur vide
 @AllArgsConstructor // constructeur
@@ -20,8 +20,8 @@ public class Commentaire {
     @Column(name = "contenu", nullable = true, columnDefinition = "TEXT")
     private String contenu;
 
-    @Column(name = "date_commentaire", nullable = false)
-    private LocalDateTime date_commentaire;
+    @Column(name = "dateCommentaire", nullable = false)
+    private LocalDateTime dateCommentaire;
 
      // clés étrangères
     @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur

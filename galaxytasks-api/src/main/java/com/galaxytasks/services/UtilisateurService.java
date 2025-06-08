@@ -2,7 +2,6 @@ package com.galaxytasks.services;
 
 import java.util.List;
 import java.util.Optional;
-//import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,12 +66,12 @@ public class UtilisateurService {
     // retourne true si la suppression réussie
     // sinon retourne false
     public boolean deleteUser(Integer idUtilisateur){
-        if(UtilisateurRepository.existsById(idUtilisateur)){
-            UtilisateurRepository.deleteById(idUtilisateur);
+        if(UtilisateurRepository.existsById(idUtilisateur)){ // On vérifie si l'utilisateur existe
+            UtilisateurRepository.deleteById(idUtilisateur); // Si oui, on le supprime
             return true;
         }
         else{
-            return false;
+            return false; // sinon false est retourné
         }
     }
 
@@ -82,15 +81,15 @@ public class UtilisateurService {
         .map(utilisateur -> {
             utilisateur.setNomUtilisateur(utilisateurDTO.getNomUtilisateur());
             utilisateur.setEmail(utilisateurDTO.getEmail());
-            utilisateur.setMotDePasse(passwordEncoder.encode(utilisateurDTO.getMotDePasse()));
-            return mapper.toDto(UtilisateurRepository.save(utilisateur));
+            utilisateur.setMotDePasse(passwordEncoder.encode(utilisateurDTO.getMotDePasse())); // On encode le mot de passe
+            return mapper.toDto(UtilisateurRepository.save(utilisateur)); // On actualise l'utilisateur
         })
         .map(mapper::toCDto);
     }
 
     // rechercher un utilisateur par son identifiant
     public Optional<UtilisateurCreateDTO> searchById(Integer idUtilisateur){
-        return UtilisateurRepository.findByidUtilisateur(idUtilisateur)
+        return UtilisateurRepository.findById(idUtilisateur)
         .map(mapper::toDto)
         .map(mapper::toCDto);
     }
