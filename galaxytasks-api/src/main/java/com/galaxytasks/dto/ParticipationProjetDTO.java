@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ParticipationProjetDTO {
     private Integer idProjet;
-    private String intitule;
     private Integer idUtilisateur;
-    private String nomUtilisateur;
     private Role role;
 }

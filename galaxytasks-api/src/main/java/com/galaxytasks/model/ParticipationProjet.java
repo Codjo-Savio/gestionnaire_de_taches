@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table (name = "particiationProjet")
+@Table (name = "participationProjet")
 @Data // générer automatiquement des getters et des setters
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,12 +17,12 @@ public class ParticipationProjet {
     @ManyToOne // plusieurs projets peuvent appartenir à un même utilisateur
     @MapsId("idProjet") // lie à la clé composite
     @JoinColumn(name = "idProjet", nullable = false)
-    private Projet idProjet;
+    private Projet projet;
 
     @ManyToOne // plusieurs projets peuvent appartenir à un même utilisateur
     @MapsId("idUtilisateur") // lie à la clé composite
     @JoinColumn(name = "idUtilisateur", nullable = false)
-    private Utilisateur idUtilisateur;
+    private Utilisateur utilisateur;
 
     /* Type ENUM */
     public enum Role{
@@ -43,12 +43,13 @@ public class ParticipationProjet {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private Role role = Role.MEMBRE;
+    private Role role;
 
     @Column(name = "dateAjout", nullable = true)
     private LocalDateTime dateAjout ;
     @PrePersist
     public void prePersist() {
+        this.role = Role.MEMBRE;
         this.dateAjout = LocalDateTime.now();
     }
 
@@ -60,7 +61,7 @@ CREATE TABLE participationProjet(
     idProjet INT NOT NULL, 
     idUtilisateur INT NOT NULL,
     role ENUM('proprietaire', 'admin', 'membre') DEFAULT 'membre',
-    date_ajout DATE DEFAULT CURRENT_DATE,
+    dateAjout DATE DEFAULT CURRENT_DATE,
      FOREIGN KEY (idProjet) REFERENCES projet(idProjet)
         ON DELETE CASCADE
         ON UPDATE CASCADE,

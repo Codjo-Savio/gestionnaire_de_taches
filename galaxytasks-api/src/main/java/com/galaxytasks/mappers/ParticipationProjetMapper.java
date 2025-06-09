@@ -9,16 +9,15 @@ import com.galaxytasks.model.ParticipationProjet;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ParticipationProjetMapper {
-    @Mapping(target = "idProjet", ignore = true)
-    @Mapping(target = "intitule", ignore = true)
-    @Mapping(target = "idUtilisateur", ignore = true)
-    @Mapping(target = "nomUtilisateur", ignore = true)
+    @Mapping(source = "id.idProjet", target = "idProjet")
+    @Mapping(source = "id.idUtilisateur", target = "idUtilisateur")
     @Mapping(source = "role", target = "role")
     ParticipationProjetDTO toDto(ParticipationProjet participationProjet);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "idProjet", ignore = true)
-    @Mapping(target = "idUtilisateur", ignore = true)
+    @Mapping(source = "idProjet", target = "id.idProjet")
+    @Mapping(source = "idUtilisateur", target = "id.idUtilisateur")
+    @Mapping(target = "projet", ignore = true)
+    @Mapping(target = "utilisateur", ignore = true)
     @Mapping(source = "role", target = "role")
     @Mapping(target = "dateAjout", ignore = true)
     ParticipationProjet toEntity(ParticipationProjetDTO participationProjetDTO);
