@@ -34,7 +34,7 @@ public class ProjetRestController {
     // POST - Créer un nouveau projet
     // api/projects
     @PostMapping("")
-    public ResponseEntity<ProjetDTO> create(@RequestBody ProjetCreateDTO projet){
+    public ResponseEntity<ProjetDTO> create(@Valid @RequestBody ProjetCreateDTO projet){
         try{
             ProjetDTO project = projetService.create(projet);
             return ResponseEntity.status(HttpStatus.CREATED).body(project);

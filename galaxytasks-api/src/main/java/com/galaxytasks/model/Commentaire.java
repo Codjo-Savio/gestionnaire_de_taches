@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Commentaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCommentaire")
+    @Column(name = "idCommentaire", nullable = false)
     private Integer idCommentaire;
 
     @Column(name = "contenu", nullable = true, columnDefinition = "TEXT")
@@ -23,7 +23,12 @@ public class Commentaire {
     @Column(name = "dateCommentaire", nullable = false)
     private LocalDateTime dateCommentaire;
 
-     // clés étrangères
+    @PrePersist
+    public void PrePersist(){
+        this.dateCommentaire = LocalDateTime.now();
+    }
+
+    // clés étrangères
     @ManyToOne // plusieurs tâches peuvent appartenir à un même utilisateur
     @JoinColumn(name = "idUtilisateur", nullable = false)
     private Utilisateur utilisateur;

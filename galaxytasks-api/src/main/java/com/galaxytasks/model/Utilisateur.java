@@ -14,7 +14,7 @@ import lombok.*;
 public class Utilisateur{
     // entités
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Spécification  de l'auto-incrémentation7
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Spécification  de l'auto-incrémentation
     @Column(name = "idUtilisateur", nullable = false)
     private Integer idUtilisateur;
 

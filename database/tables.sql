@@ -102,7 +102,7 @@ CREATE TABLE historiqueTache(
     action ENUM('CREE', 'MODIFIE', 'ASSIGNE', 'DESASSIGNE', 'TERMINE', 'REOUVERT', 'SUPPRIMER', 'PRIORITE_MODIFIEE', 'ECHEANCE MODIFIEE'),
     ancienneValeur TEXT,
     nouvelleValeur TEXT,
-    dateAction DATETIME DEFAULT CURRENT_TIMESTAMP,
+    dateAction DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     archived BOOLEAN NOT NULL DEFAULT FALSE
 )ENGINE=InnoDB;
 
@@ -110,7 +110,7 @@ CREATE TABLE historiqueTache(
 CREATE TABLE commentaire(
     idCommentaire INT PRIMARY KEY AUTO_INCREMENT, -- AUTO_INCREMENT pour générer un identifiant unique à chaque ligne
     contenu TEXT,
-    dateCommentaire DATETIME NOT NULL,
+    dateCommentaire DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     idUtilisateur INT NOT NULL,
     idTache INT NOT NULL,
     FOREIGN KEY (idUtilisateur) REFERENCES utilisateur(idUtilisateur)
