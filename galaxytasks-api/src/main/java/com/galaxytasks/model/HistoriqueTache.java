@@ -12,7 +12,7 @@ import lombok.*;
 public class HistoriqueTache {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     // clés étrangères
@@ -60,8 +60,13 @@ public class HistoriqueTache {
     @Column(name = "dateAction", nullable = true)
     private LocalDateTime dateAction;
 
+    @Column(name = "archived", nullable = false)
+    private boolean archived;
+
+    @PrePersist
     public void prePersist() {
         this.dateAction = LocalDateTime.now();
+        this.archived = false;
     }
 
 }

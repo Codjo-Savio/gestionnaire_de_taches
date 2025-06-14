@@ -13,6 +13,8 @@ import com.galaxytasks.mappers.TacheMapper;
 import com.galaxytasks.model.Projet;
 import com.galaxytasks.model.Tache;
 import com.galaxytasks.model.Utilisateur;
+import com.galaxytasks.model.Tache.EstTermine;
+import com.galaxytasks.model.Tache.Priorite;
 import com.galaxytasks.repository.ProjetRepository;
 import com.galaxytasks.repository.TacheRepository;
 import com.galaxytasks.repository.UtilisateurRepository;
@@ -93,6 +95,22 @@ public class TacheService {
         .stream() // Qu'on transforme en flux
         .map(mapper::toDto) // Qu'on mappe
         .collect(Collectors.toList()); // puis q'on enregistre dans une liste
+    }
+
+    // récupérer une liste de tâches en fonction du projet
+    public List<TacheDTO> getByPriorite(Priorite priorite){
+        return tacheRepository.findByPriorite(priorite)
+        .stream() // Qu'on transforme en flux
+        .map(mapper::toDto) // Qu'on mappe
+        .collect(Collectors.toList()); // Puis qu'on stocke dans une liste
+    }
+
+    // récupérer une liste de tâches en fonction du projet
+    public List<TacheDTO> getByStatus(EstTermine status){
+        return tacheRepository.findByEstTermine(status)
+        .stream() // Qu'on transforme en flux
+        .map(mapper::toDto) // Qu'on mappe
+        .collect(Collectors.toList()); // Puis qu'on stocke dans une liste
     }
 
     // récupérer une liste de tâches en fonction de la date de création

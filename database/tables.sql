@@ -99,10 +99,11 @@ CREATE TABLE historiqueTache(
     FOREIGN KEY (idParticipant) REFERENCES utilisateur(idUtilisateur)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    action ENUM('créé', 'modifié', 'assigné', 'désassigné', 'terminé', 'réouvert', 'supprimer', 'priorité modifiée', 'échéance modifiée'),
+    action ENUM('CREE', 'MODIFIE', 'ASSIGNE', 'DESASSIGNE', 'TERMINE', 'REOUVERT', 'SUPPRIMER', 'PRIORITE_MODIFIEE', 'ECHEANCE MODIFIEE'),
     ancienneValeur TEXT,
     nouvelleValeur TEXT,
-    dateAction DATETIME DEFAULT CURRENT_TIMESTAMP
+    dateAction DATETIME DEFAULT CURRENT_TIMESTAMP,
+    archived BOOLEAN NOT NULL DEFAULT FALSE
 )ENGINE=InnoDB;
 
 -- Pour les commentaires

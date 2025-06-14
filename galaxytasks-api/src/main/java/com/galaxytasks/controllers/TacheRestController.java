@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.galaxytasks.dto.TacheDTO;
+import com.galaxytasks.model.Tache.EstTermine;
+import com.galaxytasks.model.Tache.Priorite;
 import com.galaxytasks.services.TacheService;
 
 import jakarta.validation.Valid;
@@ -94,6 +96,30 @@ public class TacheRestController {
     public ResponseEntity<List<TacheDTO>> getByUser(@Valid @RequestParam Integer user){
         try{
             List<TacheDTO> tasks = tacheService.getByUser(user);
+            return ResponseEntity.ok(tasks);
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // GET - Récupérer une liste de tâches en fonction de la priorité
+    //api/tasks/priority?priority=...
+    @GetMapping("/priority")
+    public ResponseEntity<List<TacheDTO>> getByUser(@Valid @RequestParam Priorite priority){
+        try{
+            List<TacheDTO> tasks = tacheService.getByPriorite(priority);
+            return ResponseEntity.ok(tasks);
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // GET - Récupérer une liste de tâches en fonction de l'état de la tâche
+    //api/tasks/status?status=...
+    @GetMapping("/status")
+    public ResponseEntity<List<TacheDTO>> getByUser(@Valid @RequestParam EstTermine status){
+        try{
+            List<TacheDTO> tasks = tacheService.getByStatus(status);
             return ResponseEntity.ok(tasks);
         }catch(Exception e){
             return ResponseEntity.notFound().build();
