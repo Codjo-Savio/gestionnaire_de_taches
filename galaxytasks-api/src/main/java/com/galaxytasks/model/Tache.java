@@ -26,13 +26,7 @@ public class Tache {
    
     @Column(name = "dateModification", nullable = true)
     private LocalDateTime dateModification;// LocalDateTime pour la date et l'heure
-    
-    @PrePersist
-    public void prePersist() {
-        this.dateCreation = LocalDateTime.now();
-        this.dateModification = LocalDateTime.now();
-    }
-
+   
     @PreUpdate
     public void preUpdate() {
         this.dateModification = LocalDateTime.now();
@@ -83,7 +77,16 @@ public class Tache {
 
     @Enumerated(EnumType.STRING)
     @Column (name = "estTermine", nullable = false)
-    private EstTermine estTermine = EstTermine.TODO;
+    private EstTermine estTermine;
+
+     
+    @PrePersist
+    public void prePersist() {
+        this.dateCreation = LocalDateTime.now();
+        this.dateModification = LocalDateTime.now();
+        this.estTermine = EstTermine.TODO;
+    }
+
 
     // clés étrangères
     @ManyToOne // plusieurs tâches peuvent appartenir à un même projet
