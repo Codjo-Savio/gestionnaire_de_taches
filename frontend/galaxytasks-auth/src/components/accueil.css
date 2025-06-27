@@ -26,57 +26,60 @@ html{
 body{
     min-height: 100vh;
     display: flex;
-    font-family: 'Caviar-Regular', Arial, sans-serif;
-    background: linear-gradient(135deg, #05101d, #05101d, #05101d, #0d0910);
-    color: white;
-    overflow-x: hidden;
+    flex-direction: column;
+    background: linear-gradient(135deg, #5271ff, #ffa5ff);
+    background-color: rgb(234, 230, 230);
+    color: black;
 }
 
-/* Section menu */
-#menu{
+/*header*/
+header{
     flex: 1;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: linear-gradient(135deg, #010314, #180150, #141313) center/cover;
-    background-blend-mode: overlay;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    margin-right: 2rem;
-    position: relative;
-    font-family: 'Caviar-Bold', sans-serif;
+    flex-direction: row;
+    border-radius: 60px;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: white;
+    color: #5271ff;
+    font-family: 'Caviar-Regular', Arial, sans-serif;
 }
 
-#menu::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.3);
-    border-radius: inherit;
-}
-
-#menu > * {
-    position: relative;
-    z-index: 1;
-}
-
-menu h1{
-    margin-bottom: 0.5rem;
-}
-a{
-    margin: 0.75rem;
-    padding-left: 1rem;
+.app_name{
+    flex: 1;
+    display: flex;
     text-align: left;
-    text-decoration: none;
-    color: white;
-    cursor: grab;
+    justify-content: flex-start;
+    align-items: center;   
 }
 
-a:hover{
+.app_name h1{
+    font-size: 2rem;
+    font-family: 'Caviar-Regular', Arial, sans-serif;
+}
+
+.nav{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav a{
+    color: #5271ff;
+    opacity: 0.6;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-family: 'Caviar-Regular', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.nav a:hover{
     background: rgba(255,255,255,0.1);
     border-color: #5271ff;
     text-decoration: none;
@@ -86,109 +89,21 @@ a:hover{
     font-size: 0.9rem;
 }
 
-.accueil{
-    color: #ff7676;
+.nav .my_account{
+    background:  #5271ff;
+    color: white;
+    border-color: #5271ff;
 }
 
-.accueil::before{
-    content:"🏠";
-    margin-right: 0.5rem;
+.my_account:hover{
+    color: white;
+    background: black;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
-.inbox::before{
-    content:"✉️";
-    margin-right: 0.5rem;
-}
-
-.prive::before{
-    content:"🔒";
-    margin-right: 0.5rem;
-}
-
-.guide::before{
-    content:"📖";
-    margin-right: 0.5rem;
-}
-
-.nouveau::before{
-    content:"📋";
-    margin-right: 0.5rem;
-}
-
-.todo::before{
-    content:"📝";
-    margin-right: 0.5rem;
-}
-
-.anciens::before{
-    content:"📋";
-    margin-right: 0.5rem;
-}
-
-.parametres::before{
-    content:"⚙️";
-    margin-right: 0.5rem;
-}
-
-.corbeille::before{
-    content:"🗑";
-    margin-right: 0.5rem;
-}
-
-.inviter::before{
-    content:"👤";
-    margin-right: 0.5rem;
-}
-
-.meeting::before{
-    content:"💼";
-    margin-right: 0.5rem;
-}
-
-
-#section_accueil{
-    flex : 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-blend-mode: overlay;
-    padding-left: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-right: 2rem;
-    position: relative;
-    font-family: 'Caviar-Bold', sans-serif;
-}
-h1 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-family: 'Caviar-Bold', Arial, sans-serif;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    text-align: left;
-}
-
-h2 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-family: 'Caviar-Bold', Arial, sans-serif;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    text-align: left;
-}
-
-
-
-#boutons_accueil{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    font-family: 'Caviar-Bold', sans-serif;
-    border-radius: 30px;
-    width: 100%;
-    height: 15rem;
-    position: relative;
-}
 
 button{
     font-family: 'Caviar-Bold', sans-serif;
@@ -346,3 +261,8 @@ button:active {
 
 #section_accueil > *:nth-child(2) { animation-delay: 0.1s; }
 #section_accueil > *:nth-child(3) { animation-delay: 0.2s; }
+
+/*
+*{
+    outline: 1px solid red;
+}*/

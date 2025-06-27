@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,9 +44,6 @@ public class AuthenticationController {
     @Autowired
     private JwtService jwtService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     // POST - Se connecter à son compte
     // api/auth/login
     @PostMapping("/login")
@@ -60,7 +56,6 @@ public class AuthenticationController {
                     loginRequestDTO.getMotDePasse()
                 )
             );
-            
             // génerer un Access Token et un Refresh Token
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
             String jwtAccess = jwtService.generateAccessToken(userDetails);
@@ -105,7 +100,7 @@ public class AuthenticationController {
             UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
             utilisateurDTO.setNomUtilisateur(registerDTO.getUsername());
             utilisateurDTO.setEmail(registerDTO.getEmail());
-            utilisateurDTO.setMotDePasse(passwordEncoder.encode(registerDTO.getPassword()));
+            utilisateurDTO.setMotDePasse(registerDTO.getPassword());
 
             utilisateurService.creerUtilisateur(utilisateurDTO);
             return ResponseEntity.ok(new MessageResponse("Utilisateur enregistré avec succès"));

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './register.css';
 
@@ -14,6 +15,9 @@ export default function Register(){
 
     // pour le loading
     const [loading, setLoading] = useState(false);
+
+    // pour la navigation entre les pages
+    const navigate = useNavigate();
 
     // fonction appelée à la soumission du formulaire
     const handleSubmit = async(e: React.FormEvent) =>{
@@ -38,12 +42,13 @@ export default function Register(){
                     withCredentials:true,
                 }
             );
-            setMessage("Inscription réussie");
             console.log(response.data);
+            setTimeout(() => navigate("/login"), 2000); // 2 secondes
+            //navigate("/login")
 
         }  catch(error:any){
             if(error.response && error.response.data){
-                setMessage("Erreur : "+error.response.data.message);
+                setMessage(error.response.data.message);
             }
             else{
                 setMessage("Une erreur est survenue");
@@ -122,7 +127,7 @@ export default function Register(){
                     </div>
                 </div>
                 
-                <button id="Inscription" type="submit" onSubmit={handleSubmit} disabled={loading}>
+                <button id="Inscription" type="submit" disabled={loading}>
                     {loading? "En cours" : "Inscription"}
                 </button>
                 <div id="continuer-avec">

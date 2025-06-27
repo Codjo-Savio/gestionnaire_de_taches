@@ -27,16 +27,16 @@ body {
     min-height: 100vh;
     display: flex;
     font-family: 'Caviar-Regular', Arial, sans-serif;
-    background-color: white;
     /*background: linear-gradient(135deg, #05101d, #05101d, #05101d, #0d0910);*/
-    color: black;
     overflow-x: hidden;
 }
 
-.conteneur {
+.conteneur{
     display: flex;
     flex-direction: row;
     width: 100%;
+    background-color: white;
+    color: black;
 }
 
 
@@ -47,6 +47,7 @@ body {
     flex-direction: column;
     justify-content: center;
     background: linear-gradient(135deg, #5271ff, #ffa5ff);
+    opacity: 0.8;
     color: white;
     /*background: linear-gradient(135deg, #010314, #180150, #141313) center/cover;*/
     background-blend-mode: overlay;
@@ -146,6 +147,7 @@ input[type="password"] {
     border: none;
     border-radius: 25px;
     background: linear-gradient(135deg, #5271ff, #ffa5ff);
+    opacity: 0.8;
     color: white;
     font-size: 1rem;
     font-family: inherit;
@@ -190,18 +192,6 @@ input[type="checkbox"] {
     accent-color: #5271ff;
 }
 
-#remember-forgot a {
-    color: #ffa5ff;
-    text-decoration: none;
-    font-style: italic;
-    transition: all 0.3s ease;
-}
-
-#remember-forgot a:hover {
-    text-decoration: underline;
-    color: white;
-}
-
 /* Bouton inscription */
 button {
     width: 100%;
@@ -209,6 +199,7 @@ button {
     border: none;
     border-radius: 25px;
     background: linear-gradient(135deg, #5271ff, #ffa5ff);
+    opacity: 0.8;
     color: white;
     font-size: 1.1rem;
     font-family: 'Caviar-Bold', Arial, sans-serif;
@@ -228,12 +219,12 @@ button:active {
 }
 
 button[disabled] {
-    opacity: 0.6;
+    opacity: 0.8;
     cursor: not-allowed;
 }
 
 .message{
-    color: lightskyblue;
+    color: red;
     font-weight: bold;
     font-size: 0.75rem;
     font-family: 'Caviar-Bold', sans-serif;

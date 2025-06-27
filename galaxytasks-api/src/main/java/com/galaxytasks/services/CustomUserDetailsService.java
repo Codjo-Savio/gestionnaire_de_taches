@@ -54,4 +54,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         
         return new CustomUserDetails(utilisateur, participations);
     }
+
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+        Utilisateur utilisateur = utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé: " + email));
+        
+        List<ParticipationProjet> participations = participationProjetRepository
+                .findByUtilisateurIdUtilisateur(utilisateur.getIdUtilisateur());
+        
+        return new CustomUserDetails(utilisateur, participations);
+    }
 }

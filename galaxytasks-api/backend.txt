@@ -1,0 +1,211 @@
+.
+├── backend.txt
+├── HELP.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── galaxytasks
+│   │   │           ├── administration
+│   │   │           │   ├── AdminProperties.java
+│   │   │           │   └── StartupService.java
+│   │   │           ├── controllers
+│   │   │           │   ├── AssignementRestController.java
+│   │   │           │   ├── AuthenticationController.java
+│   │   │           │   ├── CommentaireRestController.java
+│   │   │           │   ├── HistoriqueTacheRestController.java
+│   │   │           │   ├── ParticipationProjetRestController.java
+│   │   │           │   ├── ProjetRestController.java
+│   │   │           │   ├── TacheRestController.java
+│   │   │           │   └── UtilisateurRestController.java
+│   │   │           ├── dto
+│   │   │           │   ├── AssignementDTO.java
+│   │   │           │   ├── AuthResponseDTO.java
+│   │   │           │   ├── CommentaireDTO.java
+│   │   │           │   ├── HistoriqueTacheDTO.java
+│   │   │           │   ├── LoginRequestDTO.java
+│   │   │           │   ├── ParticipationProjetDTO.java
+│   │   │           │   ├── ProjetCreateDTO.java
+│   │   │           │   ├── ProjetDTO.java
+│   │   │           │   ├── RegisterDTO.java
+│   │   │           │   ├── TacheDTO.java
+│   │   │           │   ├── UtilisateurCreateDTO.java
+│   │   │           │   └── UtilisateurDTO.java
+│   │   │           ├── exceptions
+│   │   │           │   ├── EmailAlreadyUsedException.java
+│   │   │           │   └── MessageResponse.java
+│   │   │           ├── galaxytasks_api
+│   │   │           ├── GalaxytasksApiApplication.java
+│   │   │           ├── mappers
+│   │   │           │   ├── AssignementMapper.java
+│   │   │           │   ├── CommentaireMapper.java
+│   │   │           │   ├── HistoriqueTacheMapper.java
+│   │   │           │   ├── ParticipationProjetMapper.java
+│   │   │           │   ├── ProjetMapper.java
+│   │   │           │   ├── TacheMapper.java
+│   │   │           │   └── UtilisateurMapper.java
+│   │   │           ├── model
+│   │   │           │   ├── AssignementId.java
+│   │   │           │   ├── Assignement.java
+│   │   │           │   ├── Commentaire.java
+│   │   │           │   ├── HistoriqueTache.java
+│   │   │           │   ├── ParticipationProjetId.java
+│   │   │           │   ├── ParticipationProjet.java
+│   │   │           │   ├── Projet.java
+│   │   │           │   ├── Tache.java
+│   │   │           │   └── Utilisateur.java
+│   │   │           ├── repository
+│   │   │           │   ├── AssignementRepository.java
+│   │   │           │   ├── CommentaireRepository.java
+│   │   │           │   ├── HistoriqueTacheRepository.java
+│   │   │           │   ├── ParticipationProjetRepository.java
+│   │   │           │   ├── ProjetRepository.java
+│   │   │           │   ├── TacheRepository.java
+│   │   │           │   └── UtilisateurRepository.java
+│   │   │           ├── security
+│   │   │           │   ├── CustomUserDetails.java
+│   │   │           │   ├── JwtAuthenticationEntryPoint.java
+│   │   │           │   ├── JwtRequestFilter.java
+│   │   │           │   ├── PasswordEncod.java
+│   │   │           │   └── SecurityConfig.java
+│   │   │           └── services
+│   │   │               ├── AssignementService.java
+│   │   │               ├── CommentaireService.java
+│   │   │               ├── CustomUserDetailsService.java
+│   │   │               ├── HistoriqueTacheService.java
+│   │   │               ├── JwtService.java
+│   │   │               ├── ParticipationProjetService.java
+│   │   │               ├── ProjetService.java
+│   │   │               ├── TacheService.java
+│   │   │               └── UtilisateurService.java
+│   │   └── resources
+│   │       └── application.properties
+│   └── test
+│       └── java
+│           └── com
+│               └── galaxytasks
+│                   └── galaxytasks_api
+│                       └── GalaxytasksApiApplicationTests.java
+└── target
+    ├── classes
+    │   ├── application.properties
+    │   └── com
+    │       └── galaxytasks
+    │           ├── administration
+    │           │   ├── AdminProperties.class
+    │           │   └── StartupService.class
+    │           ├── controllers
+    │           │   ├── AssignementRestController.class
+    │           │   ├── AuthenticationController.class
+    │           │   ├── CommentaireRestController.class
+    │           │   ├── HistoriqueTacheRestController.class
+    │           │   ├── ParticipationProjetRestController.class
+    │           │   ├── ProjetRestController.class
+    │           │   ├── TacheRestController.class
+    │           │   └── UtilisateurRestController.class
+    │           ├── dto
+    │           │   ├── AssignementDTO.class
+    │           │   ├── AuthResponseDTO.class
+    │           │   ├── CommentaireDTO.class
+    │           │   ├── HistoriqueTacheDTO.class
+    │           │   ├── LoginRequestDTO.class
+    │           │   ├── ParticipationProjetDTO.class
+    │           │   ├── ProjetCreateDTO.class
+    │           │   ├── ProjetDTO.class
+    │           │   ├── RegisterDTO.class
+    │           │   ├── TacheDTO.class
+    │           │   ├── UtilisateurCreateDTO.class
+    │           │   └── UtilisateurDTO.class
+    │           ├── exceptions
+    │           │   ├── EmailAlreadyUsedException.class
+    │           │   └── MessageResponse.class
+    │           ├── galaxytasks_api
+    │           ├── GalaxytasksApiApplication.class
+    │           ├── mappers
+    │           │   ├── AssignementMapper.class
+    │           │   ├── AssignementMapperImpl.class
+    │           │   ├── CommentaireMapper.class
+    │           │   ├── CommentaireMapperImpl.class
+    │           │   ├── HistoriqueTacheMapper.class
+    │           │   ├── HistoriqueTacheMapperImpl.class
+    │           │   ├── ParticipationProjetMapper.class
+    │           │   ├── ParticipationProjetMapperImpl.class
+    │           │   ├── ProjetMapper.class
+    │           │   ├── ProjetMapperImpl.class
+    │           │   ├── TacheMapper.class
+    │           │   ├── TacheMapperImpl.class
+    │           │   ├── UtilisateurMapper.class
+    │           │   └── UtilisateurMapperImpl.class
+    │           ├── model
+    │           │   ├── Assignement.class
+    │           │   ├── AssignementId.class
+    │           │   ├── Commentaire.class
+    │           │   ├── HistoriqueTache$TypeAction.class
+    │           │   ├── HistoriqueTache.class
+    │           │   ├── ParticipationProjet$Role.class
+    │           │   ├── ParticipationProjet.class
+    │           │   ├── ParticipationProjetId.class
+    │           │   ├── Projet.class
+    │           │   ├── Tache$EstTermine.class
+    │           │   ├── Tache$Priorite.class
+    │           │   ├── Tache.class
+    │           │   ├── Utilisateur$Statut.class
+    │           │   └── Utilisateur.class
+    │           ├── repository
+    │           │   ├── AssignementRepository.class
+    │           │   ├── CommentaireRepository.class
+    │           │   ├── HistoriqueTacheRepository.class
+    │           │   ├── ParticipationProjetRepository.class
+    │           │   ├── ProjetRepository.class
+    │           │   ├── TacheRepository.class
+    │           │   └── UtilisateurRepository.class
+    │           ├── security
+    │           │   ├── CustomUserDetails.class
+    │           │   ├── JwtAuthenticationEntryPoint.class
+    │           │   ├── JwtRequestFilter.class
+    │           │   ├── PasswordEncod.class
+    │           │   └── SecurityConfig.class
+    │           └── services
+    │               ├── AssignementService.class
+    │               ├── CommentaireService.class
+    │               ├── CustomUserDetailsService.class
+    │               ├── HistoriqueTacheService.class
+    │               ├── JwtService.class
+    │               ├── ParticipationProjetService.class
+    │               ├── ProjetService.class
+    │               ├── TacheService.class
+    │               └── UtilisateurService.class
+    ├── generated-sources
+    │   └── annotations
+    │       └── com
+    │           └── galaxytasks
+    │               └── mappers
+    │                   ├── AssignementMapperImpl.java
+    │                   ├── CommentaireMapperImpl.java
+    │                   ├── HistoriqueTacheMapperImpl.java
+    │                   ├── ParticipationProjetMapperImpl.java
+    │                   ├── ProjetMapperImpl.java
+    │                   ├── TacheMapperImpl.java
+    │                   └── UtilisateurMapperImpl.java
+    ├── generated-test-sources
+    │   └── test-annotations
+    ├── maven-status
+    │   └── maven-compiler-plugin
+    │       ├── compile
+    │       │   └── default-compile
+    │       │       ├── createdFiles.lst
+    │       │       └── inputFiles.lst
+    │       └── testCompile
+    │           └── default-testCompile
+    │               ├── createdFiles.lst
+    │               └── inputFiles.lst
+    └── test-classes
+        └── com
+            └── galaxytasks
+                └── galaxytasks_api
+                    └── GalaxytasksApiApplicationTests.class
+
+53 directories, 156 files
