@@ -17,4 +17,6 @@ public class LoginRequestDTO {
     
     @NotBlank @Size(min = 8, max = 40)
     private String motDePasse;
+
+    boolean rememberMe;
 }

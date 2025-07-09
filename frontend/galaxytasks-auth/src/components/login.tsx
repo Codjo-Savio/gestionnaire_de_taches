@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import feather from "feather-icons";
 import "./login.css"
 
 export default function Login(){
@@ -14,6 +15,26 @@ export default function Login(){
     // pour le délai de traitement
     const [loading, setLoading] = useState(false);
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    const [rememberMe, setRememberMe] = useState(false);
+
+    useEffect(() => {
+        const iconContainer = document.querySelector(".password-icon");
+        if (iconContainer) {
+            iconContainer.innerHTML = `<i data-feather="${showPassword ? 'eye-off' : 'eye'}"></i>`;
+            feather.replace();
+        }
+    });
+
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(prev => !prev);
+    };
+
+    const toggleRememberMe = () => {
+        setRememberMe(prev => !prev);
+    };
     // fonction appelée à la soumission du formulaire
     const handleSubmit = async(e : React.FormEvent) => {
         e.preventDefault(); // empêche le rechargement de la page
@@ -30,7 +51,8 @@ export default function Login(){
                 {
                     email,
                     motDePasse : password,
-                    roles:["utilisateur"]
+                    roles:["utilisateur"],
+                    rememberMe
                 },
                 {
                     withCredentials:true,
@@ -54,9 +76,9 @@ export default function Login(){
         }
     };
     return(
-        <div className="conteneur_login">
+        <div className="conteneur-login">
             <div id="section_connexion">
-                <h2>Connectez-vous</h2>
+                <h2 className="h2-login">Connectez-vous</h2>
                 
                 <form className="formulaire_connexion" onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -71,7 +93,8 @@ export default function Login(){
                     </div>
                     
                     <div className="form-group">
-                        <input type="password" 
+                        <input
+                        type={showPassword ? "text" : "password"} 
                         id="password" 
                         name="password"
                         value={password}
@@ -79,20 +102,28 @@ export default function Login(){
                         autoComplete="current-password" 
                         placeholder="Mot de passe" 
                         required/>
+
+                        <div className="password-icon" 
+                        onClick={togglePasswordVisibility}
+                        role="button">
+                        </div>
                     </div>
                     
-                    <div id="remember-forgot">
+                    <div id="remember-forgot-login">
                         <div className="remember-group">
-                            <input type="checkbox" 
+                            <input 
+                            type="checkbox" 
+                            checked={rememberMe}
+                            onChange={toggleRememberMe}
                             id="remember"/>
                             <label htmlFor="remember">
                                 Se souvenir de moi
                             </label>
                         </div>
-                        <a href="#">Mot de passe oublié ?</a>
+                        <a className="forgotten" href="#">Mot de passe oublié ?</a>
                     </div>
                     
-                    <button id="connexion"  type="submit" disabled={loading}>
+                    <button className="login-button" type="submit" disabled={loading}>
                         {loading?"En cours" : "Connexion"}
                     </button>
                     

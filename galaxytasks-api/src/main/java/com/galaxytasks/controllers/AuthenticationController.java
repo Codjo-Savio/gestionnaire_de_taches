@@ -59,7 +59,10 @@ public class AuthenticationController {
             // génerer un Access Token et un Refresh Token
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
             String jwtAccess = jwtService.generateAccessToken(userDetails);
-            String jwtRefresh = jwtService.generateRefreshToken(userDetails);
+            String jwtRefresh = "";
+            if(loginRequestDTO.isRememberMe()){
+                jwtRefresh = jwtService.generateRefreshToken(userDetails);
+            }
 
             List<String> roles = userDetails.getAuthorities()
                 .stream()

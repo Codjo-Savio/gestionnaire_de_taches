@@ -2,6 +2,42 @@ html {
     height: 100%;
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Mode clair */
+html.light {
+  --bg-color: white;
+  --bg-color-secondary: linear-gradient(135deg, #5271ff, #ffa5ff);
+  --bg-color-hover: rgba(255,255,255,0.1);
+  --box-shadow : 0 0 20px rgba(0, 0, 0, 0.4);
+  --text-color: black;
+  --border-color: #5271ff;
+  --border : 1px solid rgba(0,0,0,0.3);
+}
+
+/* Mode sombre */
+html.dark {
+  --bg-color: linear-gradient(135deg, #05101d, #05101d, #05101d, #0d0910);
+  --bg-color-secondary: linear-gradient(135deg, #5271ff, #ffa5ff);
+  --bg-color-hover: rgba(255,255,255,0.1);
+  --box-shadow : 0 0 20px rgba(255, 255, 255, 0.4);
+  --text-color: white;
+  --border-color: #5271ff;
+  --border : 1px solid rgba(255,255,255,0.3);
+}
+
+html.dark .theme-icon{
+  transform: rotate(180deg);
+}
+
 .conteneur{
   min-width: 100vw;
   min-height: 100vh;
@@ -9,6 +45,7 @@ html {
   padding: 0 ;
   overflow-x: hidden;
   font-family: 'Caviar-Regular', Arial, sans-serif;
+ 
 }
 
 .logo {
