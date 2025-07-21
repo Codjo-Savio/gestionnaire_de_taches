@@ -1,6 +1,7 @@
 package com.galaxytasks.controllers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +23,17 @@ import com.galaxytasks.dto.LoginRequestDTO;
 import com.galaxytasks.dto.RegisterDTO;
 import com.galaxytasks.dto.UtilisateurDTO;
 import com.galaxytasks.exceptions.MessageResponse;
+import com.galaxytasks.mappers.UtilisateurMapper;
+import com.galaxytasks.model.Utilisateur;
+import com.galaxytasks.repository.UtilisateurRepository;
 import com.galaxytasks.security.CustomUserDetails;
 import com.galaxytasks.services.CustomUserDetailsService;
 import com.galaxytasks.services.JwtService;
 import com.galaxytasks.services.UtilisateurService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
@@ -42,12 +50,18 @@ public class AuthenticationController {
     private UtilisateurService utilisateurService;
 
     @Autowired
+    UtilisateurRepository utilisateurRepository;
+
+    @Autowired
+    UtilisateurMapper mapper;
+
+    @Autowired
     private JwtService jwtService;
 
     // POST - Se connecter à son compte
     // api/auth/login
     @PostMapping("/login")
-    public  ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDTO loginRequestDTO){
+    public  ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDTO loginRequestDTO, HttpServletResponse response){
         try{
             // Authentification par email et mot de passe
             Authentication authentication = authenticationManager.authenticate(
@@ -59,9 +73,25 @@ public class AuthenticationController {
             // génerer un Access Token et un Refresh Token
             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
             String jwtAccess = jwtService.generateAccessToken(userDetails);
+
+            // Stocker le jwt dans un cookie
+            Cookie jwtAccessCookie = new Cookie("jwt", jwtAccess);
+            jwtAccessCookie.setHttpOnly(true);
+            jwtAccessCookie.setSecure(true); // à activer en prod https
+            jwtAccessCookie.setPath("/");
+            jwtAccessCookie.setMaxAge(3600);
+            response.addCookie(jwtAccessCookie);
+
             String jwtRefresh = "";
             if(loginRequestDTO.isRememberMe()){
                 jwtRefresh = jwtService.generateRefreshToken(userDetails);
+                // Stocker le jwt dans un cookie
+                Cookie jwtRefreshCookie = new Cookie("jwt", jwtAccess);
+                jwtRefreshCookie.setHttpOnly(true);
+                jwtRefreshCookie.setSecure(true); // à activer en prod https
+                jwtRefreshCookie.setPath("/");
+                jwtRefreshCookie.setMaxAge(3600);
+                response.addCookie(jwtRefreshCookie);
             }
 
             List<String> roles = userDetails.getAuthorities()
@@ -70,10 +100,11 @@ public class AuthenticationController {
                 .collect(Collectors.toList());
             
             return ResponseEntity.ok(new AuthResponseDTO(
-                jwtAccess,
+                "",
                 jwtRefresh,
                 userDetails.getId(),
                 userDetails.getEmail(),
+                userDetails.getNomUtilisateur(),
                 roles
                 )
             );
@@ -113,5 +144,25 @@ public class AuthenticationController {
         }
        
     }
-    
+
+
+    // GET - récupérer le nom d'utilisateur
+    @GetMapping("/profile")
+    public ResponseEntity<?> getUsername(HttpServletRequest request){
+        String token = jwtService.extractTokenFromCookie(request);
+        if(token == null){
+            return ResponseEntity.status((HttpStatus.UNAUTHORIZED))
+            .body(new MessageResponse("Utilisateur non connecté"));
+        }
+        
+        String email = jwtService.extractUsername(token);
+        Utilisateur utilisateur =utilisateurRepository.findByEmail(email)
+        .orElseThrow(()-> new RuntimeException("Utilisateur non trouvé"));
+
+        return ResponseEntity.ok(Map.of(
+            "id", utilisateur.getIdUtilisateur(),
+            "nomUtilisateur", utilisateur.getNomUtilisateur(),
+            "email", utilisateur.getEmail()
+        ));
+    }
 }

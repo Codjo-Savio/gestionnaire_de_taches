@@ -1,0 +1,203 @@
+/* Polices personnalisées */
+/*@font-face {
+    font-family: 'Caviar-Regular';
+    src: url('fonts/CaviarDreams.ttf') format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Caviar-Bold';
+    src: url('fonts/CaviarDreams_Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-display: swap;
+}*/
+
+/* Reset et base */
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    font-family: 'Caviar-Regular', Arial, sans-serif;
+    background: var(--bg-color);
+    overflow-x: hidden;
+}
+
+.conteneur-dashboard{
+    display: flex;
+    flex-direction: row;
+    min-width: 100vw;
+    min-height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.menu-dashboard{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 2rem;
+    margin-right: 1rem;
+    justify-content: flex-start;
+}
+
+.conteneur-dashboard .a-dashboard{
+    color: var(--text-color);
+    opacity: 0.6;
+    text-decoration: none;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 1rem;
+    border: var(--border);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-family: 'Caviar-Bold', 'Caviar-Regular', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.conteneur-dashboard .a-dashboard:hover{
+    background: var(--bg-color-hover);
+    border-color: var(--border-color);
+    transform: scale(0.98);
+    box-shadow: var(--box-shadow);
+    color: #5271ff;
+    cursor: pointer;
+}
+
+
+
+.user-space-dashboard{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+}
+
+.h1-dashboard{
+    flex: 1;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    color: #5271ff;
+}
+
+.info-actions{
+    flex: 6;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 1rem; 
+}
+
+.infos{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.projets-consultes{
+    flex: 1;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 30px;
+}
+
+.taches-prioritaires{
+    flex: 1;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 30px;
+}
+
+.echeances-urgentes{
+    flex: 1;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 30px;
+}
+
+.actions{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-action-dashboard{
+    flex: 1;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-family: 'Caviar-Bold', 'Caviar-Regular', Arial, sans-serif;
+    border-radius: 30px;
+    border: none;
+}*/
+
+/* Animations */
+/*@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.menu-dashboard >*{
+    animation: fadeInDown 1s ease forwards;
+}
+.menu-dashboard > *:nth-child(2) {animation-delay: 0.1s;}
+.menu-dashboard > *:nth-child(3) {animation-delay: 0.2s;}
+.menu-dashboard > *:nth-child(4) {animation-delay: 0.3s;}
+.menu-dashboard > *:nth-child(5) {animation-delay: 0.4s;}
+.menu-dashboard > *:nth-child(6) {animation-delay: 0.5s;}
+.menu-dashboard > *:nth-child(7) {animation-delay: 0.6s;}
+.menu-dashboard > *:nth-child(8) {animation-delay: 0.7s;}
+
+.user-space-dashboard{
+    animation: fadeInDown 1s ease forwards;
+}
+
+.user-space-dashboard > *:nth-child(2) {animation-delay: 0.1s;}
+.user-space-dashboard > *:nth-child(3) {animation-delay: 0.2s;}
+
+/*
+*{
+    outline: 1px solid red;
+}*/

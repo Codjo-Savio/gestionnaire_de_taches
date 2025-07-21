@@ -3,7 +3,7 @@ import "./home.css"
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 
-export default function Login(){
+export default function Home(){
 
     const navigate = useNavigate();
 

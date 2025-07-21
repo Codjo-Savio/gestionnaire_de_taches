@@ -34,15 +34,29 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                                   @NonNull HttpServletResponse response, 
                                  @NonNull FilterChain chain) throws ServletException, IOException {
         
-        final String requestTokenHeader = request.getHeader("Authorization");
-        
         String username = null;
         String jwtToken = null;
         
-        // Le token JWT est dans le header "Authorization: Bearer <token>"
-        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-            jwtToken = requestTokenHeader.substring(7); // Enlever "Bearer "
-            
+        // lecture du jwt depuis les cookies
+        if(request.getCookies()!=null){
+            for(var cookie: request.getCookies()){
+                if("jwt".equals(cookie.getName())){
+                    jwtToken = cookie.getValue();
+                    break;
+                }
+            }
+        }
+
+        // lire le jwt depuis l'entête Auhtorization
+        if(jwtToken == null){
+            final String requestTokenHeader = request.getHeader("Authorization");
+            if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer")){
+                jwtToken = requestTokenHeader.substring(7); // On enlève Bearer
+            }
+        }
+
+        //On va maintenant extraire le nom d'utilisateur et valider le token
+        if (jwtToken != null) {
             try {
                 username = jwtService.extractUsername(jwtToken);
             } catch (IllegalArgumentException e) {

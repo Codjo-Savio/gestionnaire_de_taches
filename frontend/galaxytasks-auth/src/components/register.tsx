@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import feather from "feather-icons";
 import './register.css';
+import { Link } from "react-router-dom";
 
 export default function Register(){
     // champs du formulaire
@@ -69,8 +70,7 @@ export default function Register(){
                 }
             );
             console.log(response.data);
-            setTimeout(() => navigate("/login"), 2000); // 2 secondes
-            //navigate("/login")
+            setTimeout(() => navigate("/login"), 1000); // 1 seconde
 
         }  catch(error:any){
             if(error.response && error.response.data){
@@ -100,6 +100,7 @@ export default function Register(){
             
             <form className="formulaire_inscription" onSubmit={handleSubmit}>
                 <h2 className="h2-register">Inscrivez-vous</h2>
+                <h3>ou <Link  className="back-to-home" to="/home">retourner à l'accueil</Link></h3>
                 <div className="form-group">
                     <input 
                     type="email" 

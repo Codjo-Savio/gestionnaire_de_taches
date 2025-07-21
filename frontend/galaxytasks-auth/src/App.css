@@ -16,7 +16,7 @@ html {
 html.light {
   --bg-color: white;
   --bg-color-secondary: linear-gradient(135deg, #5271ff, #ffa5ff);
-  --bg-color-hover: rgba(255,255,255,0.1);
+  --bg-color-hover: rgba(0,0,0,0.1);
   --box-shadow : 0 0 20px rgba(0, 0, 0, 0.4);
   --text-color: black;
   --border-color: #5271ff;
@@ -28,9 +28,10 @@ html.dark {
   --bg-color: linear-gradient(135deg, #05101d, #05101d, #05101d, #0d0910);
   --bg-color-secondary: linear-gradient(135deg, #5271ff, #ffa5ff);
   --bg-color-hover: rgba(255,255,255,0.1);
-  --box-shadow : 0 0 20px rgba(255, 255, 255, 0.4);
+  --box-shadow : 0 0 20px rgba(0, 0, 0, 0.4);
   --text-color: white;
   --border-color: #5271ff;
+  --border-color-secondary: black;
   --border : 1px solid rgba(255,255,255,0.3);
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import feather from "feather-icons";
@@ -18,6 +19,8 @@ export default function Login(){
     const [showPassword, setShowPassword] = useState(false);
 
     const [rememberMe, setRememberMe] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const iconContainer = document.querySelector(".password-icon");
@@ -59,8 +62,7 @@ export default function Login(){
                 }
             );
             setMessage("Connexion réussie");
-            const token = response.data.token;
-            localStorage.setItem("token", token);
+            setTimeout(() => navigate("/dashboard"), 1000); // 1 seconde
             console.log(response.data);
         }
         catch(error:any){
@@ -79,6 +81,7 @@ export default function Login(){
         <div className="conteneur-login">
             <div id="section_connexion">
                 <h2 className="h2-login">Connectez-vous</h2>
+                <h3>ou <Link  className="back-to-home" to="/home">retourner à l'accueil</Link></h3>
                 
                 <form className="formulaire_connexion" onSubmit={handleSubmit}>
                     <div className="form-group">
