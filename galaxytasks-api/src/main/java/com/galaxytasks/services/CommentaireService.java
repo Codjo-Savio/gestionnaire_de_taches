@@ -17,21 +17,15 @@ import com.galaxytasks.repository.UtilisateurRepository;
 
 @Service
 public class CommentaireService {
-   private CommentaireRepository commentaireRepository;
-   private UtilisateurRepository utilisateurRepository;
-   private TacheRepository tacheRepository;
-   private CommentaireMapper mapper;
+    @Autowired
+    private CommentaireRepository commentaireRepository;
+    @Autowired
+    private UtilisateurRepository utilisateurRepository;
+    @Autowired
+    private TacheRepository tacheRepository;
+    @Autowired
+    private CommentaireMapper mapper;
    
-   @Autowired // Instanciation automatique
-   public CommentaireService(CommentaireRepository commentaireRepository,
-                            UtilisateurRepository utilisateurRepository,
-                            TacheRepository tacheRepository,
-                            CommentaireMapper mapper){
-        this.commentaireRepository = commentaireRepository;
-        this.utilisateurRepository = utilisateurRepository;
-        this.tacheRepository = tacheRepository;
-        this.mapper = mapper;
-    }
 
     // créer un nouveau commentaire
     public CommentaireDTO create(CommentaireDTO commentaire){

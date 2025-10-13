@@ -14,25 +14,32 @@ html {
 }
 /* Mode clair */
 html.light {
-  --bg-color: white;
-  --bg-color-secondary: linear-gradient(135deg, #5271ff, #ffa5ff);
+  --bg-color: linear-gradient(90deg, #ffffff, #0097b2, #0097b2);
+  --bg-color-secondary: white;
+  --bg-button: linear-gradient(135deg,  #ffffff, #0097b2, #0097b2);
+  --bg-button-secondary:  #0097b2;
   --bg-color-hover: rgba(0,0,0,0.1);
   --box-shadow : 0 0 20px rgba(0, 0, 0, 0.4);
-  --text-color: black;
-  --border-color: #5271ff;
-  --border : 1px solid rgba(0,0,0,0.3);
+  --text-color: #12292e;
+  --text-color-secondary: #4b4b4b;
+  --text-color-third: #0097b2;
+  --border : 1px solid #12292e;
+  --border-color : #12292e;
 }
 
 /* Mode sombre */
 html.dark {
-  --bg-color: linear-gradient(135deg, #05101d, #05101d, #05101d, #0d0910);
-  --bg-color-secondary: linear-gradient(135deg, #5271ff, #ffa5ff);
+  --bg-color: linear-gradient(135deg, #12292e, #000000);
+  --bg-color-secondary: black;
+  --bg-button: linear-gradient(135deg, #0097b2, #000000);
+  --bg-button-secondary: #12292e;
   --bg-color-hover: rgba(255,255,255,0.1);
   --box-shadow : 0 0 20px rgba(0, 0, 0, 0.4);
-  --text-color: white;
-  --border-color: #5271ff;
-  --border-color-secondary: black;
-  --border : 1px solid rgba(255,255,255,0.3);
+  --text-color: #0097b2;
+  --text-color-secondary: #ababab;
+  --text-color-third: #0097b2;
+  --border : 1px solid #0097b2;
+  --border-color : #0097b2;
 }
 
 html.dark .theme-icon{
@@ -44,7 +51,6 @@ html.dark .theme-icon{
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 ;
-  overflow-x: hidden;
   font-family: 'Caviar-Regular', Arial, sans-serif;
  
 }

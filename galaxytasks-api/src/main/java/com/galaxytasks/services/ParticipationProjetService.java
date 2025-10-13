@@ -20,21 +20,15 @@ import com.galaxytasks.repository.UtilisateurRepository;
 
 @Service
 public class ParticipationProjetService {
+    @Autowired
     private ParticipationProjetRepository participationProjetRepository;
+    @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
     private ProjetRepository projetRepository;
+    @Autowired
     private ParticipationProjetMapper mapper;
 
-    @Autowired
-    public ParticipationProjetService(ParticipationProjetRepository participationProjetRepository,
-                                    UtilisateurRepository utilisateurRepository,
-                                    ProjetRepository projetRepository,
-                                    ParticipationProjetMapper mapper){
-        this.participationProjetRepository = participationProjetRepository;
-        this.utilisateurRepository = utilisateurRepository;
-        this.projetRepository = projetRepository;
-        this.mapper = mapper;
-    }
     // créer une nouvelle participation
     public ParticipationProjetDTO create(ParticipationProjetDTO participationProjetDTO){
         // On cherche le projet

@@ -19,21 +19,15 @@ import com.galaxytasks.repository.UtilisateurRepository;
 
 @Service
 public class HistoriqueTacheService {
+    @Autowired
     private HistoriqueTacheRepository historiqueTacheRepository;
+    @Autowired
     private TacheRepository tacheRepository;
+    @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
     private HistoriqueTacheMapper mapper;
 
-    @Autowired
-    public HistoriqueTacheService(HistoriqueTacheRepository historiqueTacheRepository,
-                                TacheRepository tacheRepository,
-                                UtilisateurRepository utilisateurRepository,
-                                HistoriqueTacheMapper mapper){
-        this.historiqueTacheRepository = historiqueTacheRepository;
-        this.tacheRepository = tacheRepository;
-        this.utilisateurRepository = utilisateurRepository;
-        this.mapper = mapper;
-    }
 
     // créer un nouvel historique
     public HistoriqueTacheDTO create(HistoriqueTacheDTO historiqueTacheDTO){

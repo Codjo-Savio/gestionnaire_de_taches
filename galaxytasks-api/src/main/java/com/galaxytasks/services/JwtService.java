@@ -103,10 +103,10 @@ public class JwtService {
         Claims claims = extractAllClaims(token);
         Object rolesObj = claims.get("roles");
         List<String> roles = new ArrayList<>();
-        if (rolesObj instanceof List<?>) {
-            for (Object role : (List<?>) rolesObj) {
-                if (role instanceof String) {
-                    roles.add((String) role);
+        if (rolesObj instanceof List<?> list) {
+            for (Object role : list) {
+                if (role instanceof String string) {
+                    roles.add(string);
                 }
             }
         }

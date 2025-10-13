@@ -8,7 +8,7 @@ import com.galaxytasks.dto.ProjetCreateDTO;
 import com.galaxytasks.dto.ProjetDTO;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface ProjetMapper {
+public interface ProjetMapper{
     // from entity to DTO
     @Mapping(source = "idProjet", target = "idProjet")
     @Mapping(source = "intitule", target = "intitule")
@@ -16,7 +16,7 @@ public interface ProjetMapper {
     @Mapping(source = "dateCreation", target = "dateCreation")
     @Mapping(source = "proprietaire", target = "proprietaire")
     ProjetDTO toDto(Projet projet);
-
+    
     @Mapping(source = "idProjet", target = "idProjet")
     @Mapping(source = "intitule", target = "intitule")
     @Mapping(source = "descriptionProjet", target = "descriptionProjet")

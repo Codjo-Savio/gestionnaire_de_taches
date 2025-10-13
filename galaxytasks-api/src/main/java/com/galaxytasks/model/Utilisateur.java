@@ -2,7 +2,9 @@
 /* Entité Utilisateur */
 package com.galaxytasks.model;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity // entité déjà definie dans MySql
 @Table(name = "utilisateur")

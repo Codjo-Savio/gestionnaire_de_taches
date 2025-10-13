@@ -22,18 +22,15 @@ import com.galaxytasks.repository.UtilisateurRepository;
 
 @Service
 public class TacheService {
+    @Autowired
     private TacheRepository tacheRepository;
+    @Autowired
     private ProjetRepository projetRepository;
+    @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
     private TacheMapper mapper;
 
-    @Autowired
-    public TacheService(TacheRepository tacheRepository, ProjetRepository projetRepository, UtilisateurRepository utilisateurRepository, TacheMapper mapper){
-        this.tacheRepository = tacheRepository;
-        this.projetRepository = projetRepository;
-        this.utilisateurRepository = utilisateurRepository;
-        this.mapper = mapper;
-    }
 
     // créer une nouvelle tache
     public TacheDTO create(TacheDTO tacheDTO){

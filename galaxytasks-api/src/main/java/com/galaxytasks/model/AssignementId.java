@@ -1,6 +1,8 @@
 package com.galaxytasks.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Embeddable;
 
 @Embeddable

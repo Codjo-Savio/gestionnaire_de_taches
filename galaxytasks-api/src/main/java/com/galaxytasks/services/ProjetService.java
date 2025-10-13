@@ -18,19 +18,14 @@ import com.galaxytasks.repository.UtilisateurRepository;
 
 @Service
 public class ProjetService {
+    @Autowired
     private ProjetRepository projetRepository;
+    @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
     private ProjetMapper mapper;
+    @Autowired
     private UtilisateurMapper mapper2;
-
-    @Autowired // permet d'instancier automatiquemennt les objets
-    // Constructeur
-    public ProjetService(ProjetRepository projetRepository, UtilisateurRepository utilisateurRepository, ProjetMapper mapper, UtilisateurMapper mapper2){
-        this.projetRepository = projetRepository;
-        this.utilisateurRepository = utilisateurRepository;
-        this.mapper = mapper;
-        this.mapper2 = mapper2;
-    }
 
     // créer un nouveau projet
     public ProjetDTO create(ProjetCreateDTO projetCDto){

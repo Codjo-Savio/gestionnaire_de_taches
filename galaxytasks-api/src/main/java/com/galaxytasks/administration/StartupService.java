@@ -10,14 +10,16 @@ import jakarta.annotation.PostConstruct;
 public class StartupService {
 
     private final UtilisateurService utilisateurService;
+    //private final AdminProperties adminProperties;
 
-    public StartupService(UtilisateurService utilisateurService, AdminProperties adminProperties) {
+    public StartupService(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
+        //this.adminProperties = adminProperties;
     }
 
     @PostConstruct
     public void initSuperAdmin() {
-        utilisateurService.initSuperUtilisateurSiInexistant();;
+        utilisateurService.initSuperUtilisateurSiInexistant();
     }
 }
 

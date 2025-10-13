@@ -19,21 +19,15 @@ import com.galaxytasks.repository.UtilisateurRepository;
 
 @Service
 public class AssignementService {
+    @Autowired
     private AssignementRepository assignementRepository;
+    @Autowired
     private TacheRepository tacheRepository;
+    @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
     private AssignementMapper mapper;
 
-    @Autowired // Instanciation automatiique
-    public AssignementService(AssignementRepository assignementRepository,
-                            TacheRepository tacheRepository,
-                            UtilisateurRepository utilisateurRepository,
-                            AssignementMapper mapper){
-        this.assignementRepository = assignementRepository;
-        this.tacheRepository = tacheRepository;
-        this.utilisateurRepository = utilisateurRepository;
-        this.mapper = mapper;
-    }
 
     // créer un nouvel assignement
     public AssignementDTO create(AssignementDTO assignementDTO){

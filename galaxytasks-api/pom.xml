@@ -5,8 +5,10 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.1</version> <!-- Version stable au lieu de 4.0.0-SNAPSHOT -->
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.5.6</version>
+		<!-- Version stable au lieu de 4.0.0-SNAPSHOT -->
+		<relativePath/>
+		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.galaxytasks</groupId>
 	<artifactId>galaxytasks-api</artifactId>
@@ -27,7 +29,8 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>17</java.version> <!-- Changé de 21 à 17 pour compatibilité -->
+		<java.version>21</java.version>
+		<!-- Updated to Java 21 LTS -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -63,9 +66,14 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -74,6 +82,11 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>1.5.5.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+			<version>0.2.0</version>
 		</dependency>
 
 		<!-- Pour la génération de code -->
@@ -141,10 +154,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
@@ -156,7 +166,13 @@
 							<artifactId>mapstruct-processor</artifactId>
 							<version>1.5.5.Final</version>
 						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>0.2.0</version>
+						</path>
 					</annotationProcessorPaths>
+					<release>${java.version}</release>
 				</configuration>
 			</plugin>
 		</plugins>

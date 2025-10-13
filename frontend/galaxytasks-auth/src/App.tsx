@@ -1,4 +1,5 @@
 import './App.css'
+import'./components/icons'
 import {Routes, Route } from 'react-router-dom';
 import Register from './components/register'
 import Login from './components/login';
